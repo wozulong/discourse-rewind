@@ -3,7 +3,7 @@ en:
     admin:
       site_settings:
         categories:
-          TODO_plugin_name: "Plugin Name"
+          discourse_rewind: "Discourse Rewind"
   js:
-    discourse_plugin_name:
-      placeholder: placeholder
+    discourse_rewind:
+      placeholder: Discourse Rewind

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-MyPluginModule::Engine.routes.draw do
-  get "/examples" => "examples#index"
-  # define routes here
+DiscourseRewind::Engine.routes.draw do
+  get "/rewinds/:year/:username" => "rewinds#show"
+  get "/rewinds/assets/:version/:name" => "rewinds_assets#show"
 end
 
-Discourse::Application.routes.draw { mount ::MyPluginModule::Engine, at: "my-plugin" }
+Discourse::Application.routes.draw { mount ::DiscourseRewind::Engine, at: "/" }
