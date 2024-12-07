@@ -22,6 +22,7 @@ module DiscourseRewind
     #   @option params [Integer] :username of the rewind
     #   @return [Service::Base::Context]
 
+    # order matters, rewinds are displayed in the order they are defined
     REPORTS = [DiscourseRewind::Rewind::Action::CreatePostsCountReport]
 
     CACHE_DURATION = 5.minutes
