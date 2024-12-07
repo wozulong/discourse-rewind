@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#
+
 module DiscourseRewind
   module RewindsHelper
     # keeping it here for caching
@@ -10,17 +10,12 @@ module DiscourseRewind
 
       @urls ||= {}
       url = @urls[asset_name]
-      p "-------------"
-      # return url if url
+      return url if url
 
       content = File.read(DiscourseRewind.public_asset_path("css/#{asset_name}"))
-
-      p content
       sha1 = Digest::SHA1.hexdigest(content)
-
       url = "/rewinds/assets/#{sha1}/#{asset_name}"
-
-      p @urls[asset_name] = GlobalPath.cdn_path(url)
+      @urls[asset_name] = GlobalPath.cdn_path(url)
     end
 
     def rewind_asset_url(asset_name)
