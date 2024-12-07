@@ -10,7 +10,12 @@ module ::DiscourseRewind
       # expires_in 1.minute, public: false
       response.headers["X-Robots-Tag"] = "noindex"
 
-      render "show", layout: false
+      DiscourseRewind::Rewind::Fetch.call(service_params) do
+        on_success do |reports:|
+          @reports = reports
+          render "show", layout: false
+        end
+      end
     end
   end
 end

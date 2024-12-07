@@ -13,8 +13,19 @@
     <link rel="stylesheet" href="<%= rewind_asset_url("rewind.css")  %>">
   </head>
   <body>
-    TEST
-
-    <%= current_user.username %>
+    <div class="rewind__wrapper">
+      <div class="rewind">
+        <%- @reports.each do |report| %>
+          <div class="rewind__report">
+            <div class="rewind__report__header">
+              <%= report['identifier'] %>
+            </div>
+            <div class="rewind__report__body">
+              <%= report['data']['count'] %>
+            </div>
+          </div>
+        <%- end %>
+      </div>
+    </div>
   </body>
 </html>
