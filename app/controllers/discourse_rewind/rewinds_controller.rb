@@ -7,7 +7,7 @@ module ::DiscourseRewind
     skip_before_action :preload_json, :check_xhr, :redirect_to_login_if_required, only: %i[show]
 
     def show
-      # expires_in 1.minute, public: true
+      # expires_in 1.minute, public: false
       response.headers["X-Robots-Tag"] = "noindex"
 
       render "show", layout: false
