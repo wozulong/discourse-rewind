@@ -8,5 +8,5 @@ Display stats on your last year of Discourse usage.
 - example embed of a rewind in a post:
 
 ```
-<iframe src="/rewinds?year=2024&username=j.jaffeux" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" />
+<iframe src="http://127.0.0.1:4200/rewinds?year=2024&username=j.jaffeux" width="320" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" />
 ```
