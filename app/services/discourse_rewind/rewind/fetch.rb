@@ -35,16 +35,26 @@ module DiscourseRewind
       validates :username, presence: true
     end
 
+    model :user
+    model :date
     model :reports
 
     private
 
-    def fetch_reports(params:, guardian:)
+    def fetch_user(params:)
+      User.find_by_username(params.username)
+    end
+
+    def fetch_date(params:)
+      Date.new(params.year).all_year
+    end
+
+    def fetch_reports(params:, date:, user:, guardian:)
       key = "rewind:#{params.username}:#{params.year}"
       reports = Discourse.redis.get(key)
 
       if Rails.env.development? || !reports
-        reports = REPORTS.map { |report| report.call(params:, guardian:) }
+        reports = REPORTS.map { |report| report.call(params:, date:, user:, guardian:) }
         Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
       else
         reports = MultiJson.load(reports, symbolize_keys: true)
