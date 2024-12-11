@@ -47,7 +47,7 @@ module DiscourseRewind
         reports = REPORTS.map { |report| report.call(params:, guardian:) }
         Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
       else
-        reports = MultiJson.load(reports)
+        reports = MultiJson.load(reports, symbolize_keys: true)
       end
 
       reports
