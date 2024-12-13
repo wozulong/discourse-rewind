@@ -3,7 +3,7 @@
 # For a GitHub like calendar
 # https://docs.github.com/assets/cb-35216/mw-1440/images/help/profile/contributions-graph.webp
 module DiscourseRewind
-  class Rewind::Action::PostingCalendar < Action::Base
+  class Rewind::Action::PostingCalendar < Rewind::Action::BaseReport
     def call
       calendar =
         Post

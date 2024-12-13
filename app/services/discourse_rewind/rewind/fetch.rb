@@ -5,11 +5,7 @@ module DiscourseRewind
   #
   # @example
   #  ::DiscourseRewind::Rewind::Fetch.call(
-  #    guardian: guardian,
-  #    params: {
-  #      username: "falco",
-  #      year: 2024,
-  #    }
+  #    guardian: guardian
   #  )
   #
   class Rewind::Fetch
@@ -22,18 +18,9 @@ module DiscourseRewind
     #   @option params [Integer] :username of the rewind
     #   @return [Service::Base::Context]
 
-    # Do we need a custom order?
-    available_reports = DiscourseRewind::Rewind::Action::Base.descendants
-
     CACHE_DURATION = 5.minutes
 
-    params do
-      attribute :year, :integer
-      attribute :username, :string
-
-      validates :year, presence: true
-      validates :username, presence: true
-    end
+    YEAR = 2024
 
     model :user
     model :date
@@ -41,23 +28,24 @@ module DiscourseRewind
 
     private
 
-    def fetch_user(params:)
-      User.find_by_username(params.username)
+    def fetch_user(guardian:)
+      User.find_by_username(guardian.user.username)
     end
 
     def fetch_date(params:)
-      Date.new(params.year).all_year
+      Date.new(YEAR).all_year
     end
 
-    def fetch_reports(params:, date:, user:, guardian:)
-      key = "rewind:#{params.username}:#{params.year}"
+    def fetch_reports(date:, user:, guardian:)
+      key = "rewind:#{guardian.user.username}:#{YEAR}"
       reports = Discourse.redis.get(key)
 
       if Rails.env.development? || !reports
         reports =
-          available_reports
+          ::DiscourseRewind::Rewind::Action::BaseReport
+            .descendants
             .filter { _1.enabled? }
-            .map { |report| report.call(params:, date:, user:, guardian:) }
+            .map { |report| report.call(date:, user:, guardian:) }
         Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
       else
         reports = MultiJson.load(reports, symbolize_keys: true)

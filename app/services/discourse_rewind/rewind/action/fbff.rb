@@ -3,7 +3,7 @@
 # Forum Best Friend Forever ranking
 # Score is informative only, do not show in UI
 module DiscourseRewind
-  class Rewind::Action::Fbff < Action::Base
+  class Rewind::Action::Fbff < Rewind::Action::BaseReport
     MAX_SUMMARY_RESULTS = 50
     LIKE_SCORE = 1
     REPLY_SCORE = 10

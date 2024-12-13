@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DiscourseRewind
-  class Rewind::Action::Base < Service::ActionBase
+  class Rewind::Action::BaseReport < Service::ActionBase
     option :user
     option :date
 
@@ -9,7 +9,7 @@ module DiscourseRewind
       raise NotImplementedError
     end
 
-    def enabled?
+    def self.enabled?
       true
     end
   end

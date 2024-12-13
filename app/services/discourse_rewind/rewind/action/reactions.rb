@@ -2,7 +2,7 @@
 
 # For a most user / received reactions cards
 module DiscourseRewind
-  class Rewind::Action::Reactions < Action::Base
+  class Rewind::Action::Reactions < Rewind::Action::BaseReport
     def call
       post_used_reactions = {}
       post_received_reactions = {}

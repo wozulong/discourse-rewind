@@ -9,5 +9,11 @@ module ::DiscourseRewind
     config.to_prepare do
       Rails.autoloaders.main.eager_load_dir(scheduled_job_dir) if Dir.exist?(scheduled_job_dir)
     end
+
+    Rails.application.reloader.to_prepare do
+      Dir[
+        "#{Rails.root}/plugins/discourse-rewind/app/services/discourse_rewind/rewind/action/*.rb"
+      ].each { |file| require_dependency file }
+    end
   end
 end

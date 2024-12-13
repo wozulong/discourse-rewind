@@ -3,9 +3,9 @@
 # For showcasing the reading time of a user
 # Should we show book covers or just the names?
 module DiscourseRewind
-  class Rewind::Action::ReadingTime < Action::Base
+  class Rewind::Action::ReadingTime < Rewind::Action::BaseReport
     def call
-      reading_time = UserVisit.where(user: user).where(visited_at: date).sum(:time_read)
+      reading_time = UserVisit.where(user_id: user.id).where(visited_at: date).sum(:time_read)
 
       {
         data: {
@@ -38,7 +38,7 @@ module DiscourseRewind
         "And Then There Were None" => 16_200,
         "The Alchemist" => 10_800,
         "The Hitchhiker's Guide to the Galaxy" => 12_600,
-      }
+      }.symbolize_keys
     end
 
     def best_book_fit(reading_time)
