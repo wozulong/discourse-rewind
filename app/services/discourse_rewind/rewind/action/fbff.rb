@@ -75,7 +75,7 @@ module DiscourseRewind
         .includes(:topic)
         .where(
           "posts.post_type IN (?)",
-          Topic.visible_post_types(user.guardian, include_moderator_actions: false),
+          Topic.visible_post_types(user, include_moderator_actions: false),
         )
         .joins(
           "INNER JOIN posts replies ON posts.topic_id = replies.topic_id AND posts.reply_to_post_number = replies.post_number",
