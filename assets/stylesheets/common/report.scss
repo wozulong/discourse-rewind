@@ -1,0 +1,14 @@
+.rewind-report {
+}
+
+.rewind-report-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  box-sizing: border-box;
+  font-weight: 700;
+  font-size: var(--font-up-2);
+  height: 100cqh;
+  width: 100cqw;
+}

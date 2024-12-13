@@ -1,6 +1,29 @@
 .rewind {
   width: 280px;
   height: 400px;
-  background-color: var(--secondary-high);
+  background-color: var(--secondary);
   border-radius: var(--d-border-radius);
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid var(--primary-very-low);
+  box-sizing: border-box;
+  position: relative;
+  container-type: size;
+
+  &.-fullscreen {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+  }
+}
+
+.rewind__exit-fullscreen-btn {
+  position: sticky;
+  top: 5px;
+  left: calc(100% - 45px);
 }
