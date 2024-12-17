@@ -2,7 +2,7 @@
 
 # User Word Cloud
 module DiscourseRewind
-  class Rewind::Action::WordCloud < Action::Base
+  class Rewind::Action::WordCloud < Rewind::Action::BaseReport
     def call
       words = DB.query(<<~SQL, user_id: user.id, date_start: date.first, date_end: date.last)
         WITH popular_words AS (
