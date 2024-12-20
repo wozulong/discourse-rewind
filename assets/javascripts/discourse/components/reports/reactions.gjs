@@ -39,6 +39,7 @@ export default class Reactions extends Component {
 
     <div class="rewind-report-page -post-used-reactions">
       <div class="rewind-card">
+        <h3>Most used reactions in topics</h3>
         <div class="rewind-reactions-chart">
           {{#each-in @report.data.post_used_reactions as |emojiName count|}}
             <div class="rewind-reactions-row">
