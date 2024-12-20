@@ -39,21 +39,19 @@ export default class ActivityCalendar extends Component {
     <div class="rewind-report-page -activity-calendar">
       <div class="rewind-card">
         <table class="rewind-calendar">
-          <tbody>
-            {{#each this.rowsArray as |row|}}
-              <tr>
-                {{#each row as |cell|}}
-                  <td
-                    data-date={{cell.date}}
-                    class={{concatClass
-                      "rewind-calendar-cell"
-                      (this.computeClass cell.post_count)
-                    }}
-                  ></td>
-                {{/each}}
-              </tr>
-            {{/each}}
-          </tbody>
+          {{#each this.rowsArray as |row|}}
+            <tr>
+              {{#each row as |cell|}}
+                <td
+                  data-date={{cell.date}}
+                  class={{concatClass
+                    "rewind-calendar-cell"
+                    (this.computeClass cell.post_count)
+                  }}
+                ></td>
+              {{/each}}
+            </tr>
+          {{/each}}
         </table>
       </div>
     </div>

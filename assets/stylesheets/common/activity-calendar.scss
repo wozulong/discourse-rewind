@@ -1,5 +1,7 @@
 .rewind-report-page.-activity-calendar {
   .rewind-calendar {
+    border-collapse: unset;
+    border-spacing: 3px;
     tr {
       border: none;
     }
@@ -8,9 +10,10 @@
   .rewind-calendar-cell {
     height: 10px;
     width: 10px;
-
+    border-radius: 2px;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
     &.-empty {
-      background: var(--tertiary-very-low);
+      background: var(--primary-low);
     }
     &.-low {
       background: var(--tertiary-low);
