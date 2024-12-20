@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
+import { and, eq } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
 
 const ROWS = 7;
@@ -7,6 +8,8 @@ const COLS = 53;
 
 export default class ActivityCalendar extends Component {
   get rowsArray() {
+    console.log(this.args.report.data);
+
     const data = this.args.report.data;
     let rowsArray = [];
 
@@ -38,20 +41,40 @@ export default class ActivityCalendar extends Component {
   <template>
     <div class="rewind-report-page -activity-calendar">
       <div class="rewind-card">
+        <h3>Activity Calendar</h3>
         <table class="rewind-calendar">
-          {{#each this.rowsArray as |row|}}
+          <thead>
             <tr>
-              {{#each row as |cell|}}
-                <td
-                  data-date={{cell.date}}
-                  class={{concatClass
-                    "rewind-calendar-cell"
-                    (this.computeClass cell.post_count)
-                  }}
-                ></td>
-              {{/each}}
+              <td colspan="5" class="activity-header-cell">Jan</td>
+              <td colspan="4" class="activity-header-cell">Feb</td>
+              <td colspan="4" class="activity-header-cell">Mar</td>
+              <td colspan="5" class="activity-header-cell">Apr</td>
+              <td colspan="4" class="activity-header-cell">May</td>
+              <td colspan="4" class="activity-header-cell">Jun</td>
+              <td colspan="5" class="activity-header-cell">Jul</td>
+              <td colspan="4" class="activity-header-cell">Aug</td>
+              <td colspan="5" class="activity-header-cell">Sep</td>
+              <td colspan="4" class="activity-header-cell">Oct</td>
+              <td colspan="4" class="activity-header-cell">Nov</td>
+              <td colspan="4" class="activity-header-cell">Dec</td>
             </tr>
-          {{/each}}
+          </thead>
+          <tbody>
+            {{#each this.rowsArray as |row|}}
+              <tr>
+                {{#each row as |cell|}}
+                  <td
+                    data-date={{cell.date}}
+                    title={{cell.date}}
+                    class={{concatClass
+                      "rewind-calendar-cell"
+                      (this.computeClass cell.post_count)
+                    }}
+                  ></td>
+                {{/each}}
+              </tr>
+            {{/each}}
+          </tbody>
         </table>
       </div>
     </div>

@@ -42,8 +42,10 @@ export default class Reactions extends Component {
         <div class="rewind-reactions-chart">
           {{#each-in @report.data.post_used_reactions as |emojiName count|}}
             <div class="rewind-reactions-row">
-              <span>{{replaceEmoji (concat ":" emojiName ":")}}</span>
-              <span>{{this.computePercentage count}}</span>
+              <span class="emoji">{{replaceEmoji
+                  (concat ":" emojiName ":")
+                }}</span>
+              <span class="percentage">{{this.computePercentage count}}</span>
               <div
                 class="rewind-reactions-bar"
                 style={{this.computePercentageStyle count}}
@@ -51,7 +53,8 @@ export default class Reactions extends Component {
             </div>
           {{/each-in}}
 
-          <span class="rewind-total-reactions">Total number of reactions:
+          <span class="rewind-total-reactions">Percentage of total number of
+            reactions:
             {{this.totalPostUsedReactions}}</span>
         </div>
       </div>
