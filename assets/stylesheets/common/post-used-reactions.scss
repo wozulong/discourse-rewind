@@ -1,0 +1,20 @@
+.rewind-report-page.-post-used-reactions {
+  display: flex;
+  gap: 1em;
+
+  .rewind-reactions-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  .rewind-reactions-row {
+    display: flex;
+    gap: 1em;
+  }
+
+  .rewind-reactions-bar {
+    background: var(--tertiary);
+    height: 50px;
+  }
+}

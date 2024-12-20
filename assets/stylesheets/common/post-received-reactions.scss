@@ -1,0 +1,16 @@
+.rewind-report-page.-post-received-reactions {
+  .rewind-reactions-chart {
+    display: flex;
+    gap: 1em;
+  }
+
+  .rewind-card {
+    width: 177px;
+    height: 190px;
+
+    .emoji {
+      width: 72px;
+      height: 72px;
+    }
+  }
+}
