@@ -16,7 +16,7 @@
     width: calc(100vw - (100vw - 100%) + 2px);
     height: 100vh;
     position: fixed;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(var(--secondary-rgb), 0.5);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4.9px);
     -webkit-backdrop-filter: blur(4.9px);
