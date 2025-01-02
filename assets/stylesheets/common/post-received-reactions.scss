@@ -1,16 +1,32 @@
-.rewind-report-page.-post-received-reactions {
-  .rewind-reactions-chart {
-    display: flex;
-    gap: 1em;
-  }
-
+.-post-received-reactions {
   .rewind-card {
     width: 177px;
     height: 190px;
+    background: var(--secondary);
 
     .emoji {
       width: 72px;
       height: 72px;
     }
+  }
+
+  .scale:nth-child(1) {
+    scale: 0.6;
+  }
+  .scale:nth-child(2) {
+    scale: 0.7;
+    margin-left: -70px;
+  }
+  .scale:nth-child(3) {
+    scale: 0.8;
+    margin-left: -50px;
+  }
+  .scale:nth-child(4) {
+    scale: 0.9;
+    margin-left: -30px;
+  }
+  .scale:nth-child(5) {
+    scale: 1;
+    margin-left: -10px;
   }
 }

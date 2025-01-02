@@ -4,6 +4,7 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import { schedule } from "@ember/runloop";
+import { service } from "@ember/service";
 import { eq } from "truth-helpers";
 import DButton from "discourse/components/d-button";
 import concatClass from "discourse/helpers/concat-class";
@@ -15,11 +16,14 @@ import BestTopics from "discourse/plugins/discourse-rewind/discourse/components/
 import FavoriteCategories from "discourse/plugins/discourse-rewind/discourse/components/reports/favorite-categories";
 import FavoriteTags from "discourse/plugins/discourse-rewind/discourse/components/reports/favorite-tags";
 import FBFF from "discourse/plugins/discourse-rewind/discourse/components/reports/fbff";
+import Introduction from "discourse/plugins/discourse-rewind/discourse/components/reports/introduction";
 import Reactions from "discourse/plugins/discourse-rewind/discourse/components/reports/reactions";
 import ReadingTime from "discourse/plugins/discourse-rewind/discourse/components/reports/reading-time";
 import WordCloud from "discourse/plugins/discourse-rewind/discourse/components/reports/word-cloud";
 
 export default class Rewind extends Component {
+  @service siteSettings;
+
   @tracked rewind = [];
 
   @tracked fullScreen = true;
@@ -64,6 +68,7 @@ export default class Rewind extends Component {
       {{on "keydown" this.handleEscape}}
       tabindex="0"
     >
+
       <div class="rewind">
         {{#if this.loadingRewind}}
           <div class="rewind-loader">
@@ -71,6 +76,24 @@ export default class Rewind extends Component {
             <div class="rewind-loader__text">Crunching your data...</div>
           </div>
         {{else}}
+
+          <img
+            src="/plugins/discourse-rewind/images/blue_blob.svg"
+            class="blob_1"
+          />
+          <img
+            src="/plugins/discourse-rewind/images/yellow_blob.svg"
+            class="blob_2"
+          />
+          <img
+            src="/plugins/discourse-rewind/images/red_blob.svg"
+            class="blob_3"
+          />
+          <img
+            src="/plugins/discourse-rewind/images/discourse_blob_1.svg"
+            class="blob_4"
+          />
+
           <DButton
             class="rewind__exit-fullscreen-btn"
             @icon={{if this.fullScreen "discourse-compress" "discourse-expand"}}
@@ -81,9 +104,12 @@ export default class Rewind extends Component {
             class="rewind__scroll-wrapper"
             {{didInsert this.registerScrollWrapper}}
           >
+            <div class="rewind-report">
+              <Introduction />
+            </div>
+
             {{#each this.rewind as |report|}}
-              {{log report.identifier}}
-              <div class="rewind-report">
+              <div class={{concatClass "rewind-report" report.identifier}}>
                 {{#if (eq report.identifier "reactions")}}
                   <Reactions @report={{report}} />
                 {{else if (eq report.identifier "activity-calendar")}}

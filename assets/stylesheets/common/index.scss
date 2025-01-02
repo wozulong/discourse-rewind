@@ -4,8 +4,4 @@
 @import "post-received-reactions";
 @import "post-used-reactions";
 @import "activity-calendar";
-
-.rewind h3 {
-  font-size: var(--font-down-1);
-  text-align: left;
-}
+@import "blobs";

@@ -4,52 +4,41 @@
 module DiscourseRewind
   class Rewind::Action::Reactions < Rewind::Action::BaseReport
     def call
-      post_used_reactions = {}
-      post_received_reactions = {}
-      chat_used_reactions = {}
-      chat_received_reactions = {}
+      data = {}
 
       if defined?(DiscourseReactions::Reaction)
         # This is missing heart reactions (default like)
-        post_used_reactions =
-          DiscourseReactions::Reaction
-            .by_user(user)
-            .where(created_at: date)
-            .group(:reaction_value)
-            .count
+        data[:post_used_reactions] = DiscourseReactions::Reaction
+          .by_user(user)
+          .where(created_at: date)
+          .group(:reaction_value)
+          .count
 
-        post_received_reactions =
-          DiscourseReactions::Reaction
-            .includes(:post)
-            .where(posts: { user_id: user.id })
-            .where(created_at: date)
-            .group(:reaction_value)
-            .limit(5)
-            .count
+        data[:post_received_reactions] = DiscourseReactions::Reaction
+          .includes(:post)
+          .where(posts: { user_id: user.id })
+          .where(created_at: date)
+          .group(:reaction_value)
+          .limit(5)
+          .count
       end
 
       if SiteSetting.chat_enabled
-        chat_used_reactions =
-          Chat::MessageReaction.where(user: user).where(created_at: date).group(:emoji).count
+        data[:chat_used_reactions] = Chat::MessageReaction
+          .where(user: user)
+          .where(created_at: date)
+          .group(:emoji)
+          .count
 
-        chat_received_reactions =
-          Chat::MessageReaction
-            .includes(:chat_message)
-            .where(chat_message: { user_id: user.id })
-            .where(created_at: date)
-            .group(:emoji)
-            .count
+        data[:chat_received_reactions] = Chat::MessageReaction
+          .includes(:chat_message)
+          .where(chat_message: { user_id: user.id })
+          .where(created_at: date)
+          .group(:emoji)
+          .count
       end
 
-      {
-        data: {
-          post_used_reactions: sort_and_limit(post_used_reactions),
-          post_received_reactions: sort_and_limit(post_received_reactions),
-          chat_used_reactions: sort_and_limit(chat_used_reactions),
-          chat_received_reactions: sort_and_limit(chat_received_reactions),
-        },
-        identifier: "reactions",
-      }
+      { data:, identifier: "reactions" }
     end
 
     def enabled?

@@ -28,18 +28,21 @@ export default class Reactions extends Component {
 
   <template>
     <div class="rewind-report-page -post-received-reactions">
-      {{#each-in @report.data.post_received_reactions as |emojiName count|}}
-        <div class="rewind-card">
-          <span>{{replaceEmoji (concat ":" emojiName ":")}}</span>
-          <span>{{this.cleanEmoji emojiName}}</span>
-          <span>{{count}} times</span>
-        </div>
-      {{/each-in}}
+      <h3 class="rewind-report-title">Most received reactions in topics</h3>
+      <div class="rewind-report-container">
+        {{#each-in @report.data.post_received_reactions as |emojiName count|}}
+          <div class="rewind-card scale">
+            <span>{{replaceEmoji (concat ":" emojiName ":")}}</span>
+            <span>{{this.cleanEmoji emojiName}}</span>
+            <span>{{count}} times</span>
+          </div>
+        {{/each-in}}
+      </div>
     </div>
 
     <div class="rewind-report-page -post-used-reactions">
       <div class="rewind-card">
-        <h3>Most used reactions in topics</h3>
+        <h3 class="rewind-report-title">Most used reactions in topics</h3>
         <div class="rewind-reactions-chart">
           {{#each-in @report.data.post_used_reactions as |emojiName count|}}
             <div class="rewind-reactions-row">
@@ -50,13 +53,15 @@ export default class Reactions extends Component {
               <div
                 class="rewind-reactions-bar"
                 style={{this.computePercentageStyle count}}
+                title={{count}}
               ></div>
             </div>
           {{/each-in}}
 
-          <span class="rewind-total-reactions">Percentage of total number of
-            reactions:
-            {{this.totalPostUsedReactions}}</span>
+          <span class="rewind-total-reactions">
+            Total number of reactions:
+            {{this.totalPostUsedReactions}}
+          </span>
         </div>
       </div>
     </div>

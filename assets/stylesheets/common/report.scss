@@ -1,6 +1,3 @@
-.rewind-report {
-}
-
 .rewind-report-page {
   display: flex;
   align-items: center;
@@ -9,4 +6,22 @@
   box-sizing: border-box;
   font-weight: 700;
   font-size: var(--font-up-2);
+  width: 100%;
+  gap: 1em;
+  flex-direction: column;
+}
+
+.rewind-report {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.rewind-report-container {
+  display: flex;
+}
+
+.rewind-report-title {
+  font-size: var(--font-down-1);
+  text-align: left;
 }
