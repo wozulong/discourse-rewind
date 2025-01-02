@@ -112,8 +112,16 @@ export default class Rewind extends Component {
               <div class={{concatClass "rewind-report" report.identifier}}>
                 {{#if (eq report.identifier "reactions")}}
                   <Reactions @report={{report}} />
+                  <Reactions @report={{report}} />
+                  <Reactions @report={{report}} />
+                  <Reactions @report={{report}} />
+
                 {{else if (eq report.identifier "activity-calendar")}}
                   <ActivityCalendar @report={{report}} />
+                  <ActivityCalendar @report={{report}} />
+                  <ActivityCalendar @report={{report}} />
+                  <ActivityCalendar @report={{report}} />
+
                 {{/if}}
                 {{!-- {{else if (eq report.identifier "fbff")}}
                   <FBFF @report={{report}} />
