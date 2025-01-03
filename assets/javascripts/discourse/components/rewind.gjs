@@ -71,11 +71,8 @@ export default class Rewind extends Component {
       }px)`;
       if (
         children[i].classList.contains("background-2") &&
-        target.scrollTop % 3 === 0
+        target.scrollTop % 6 === 0
       ) {
-        let imageUrl = `/plugins/discourse-rewind/images/bg-frames/bg-2_${this.imageIndex}.png`;
-        children[i].style.background = `url(${imageUrl})`;
-        children[i].style.backgroundSize = "contain";
         children[i].style.setProperty(
           "--frame",
           `var(--frame-${this.imageIndex})`
