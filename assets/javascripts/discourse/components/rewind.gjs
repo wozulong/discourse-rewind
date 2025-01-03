@@ -28,6 +28,14 @@ export default class Rewind extends Component {
 
   @tracked fullScreen = true;
   @tracked loadingRewind = false;
+  @tracked shouldAnimate = false; // Controls animation state
+  @tracked imagesLoaded = false;
+  imageCache = [];
+  imageIndex = 1;
+  frameCount = 11;
+  animationFrameId = null;
+  lastScrollPosition = 0;
+  scrollThreshold = 6; // How many pixels to scroll before frame change
 
   @action
   registerScrollWrapper(element) {
@@ -47,6 +55,51 @@ export default class Rewind extends Component {
   }
 
   @action
+  preLoadImages() {
+    const preloadPromises = [];
+
+    for (let i = 0; i < this.frameCount; i++) {
+      const img = new Image();
+      img.src = `/plugins/discourse-rewind/images/bg-frames/bg-2_${i + 1}.png`;
+      this.imageCache[i] = img;
+
+      preloadPromises.push(
+        new Promise((resolve) => {
+          img.onload = resolve;
+        })
+      );
+    }
+
+    // Wait for all images to load
+    Promise.all(preloadPromises).then(() => {
+      this.imagesLoaded = true;
+    });
+  }
+
+  @action
+  updateBackground() {
+    // Only continue if we should be animating
+    if (this.shouldAnimate) {
+      const children =
+        this.rewindContainer.getElementsByClassName("background-2");
+
+      if (children.length > 0 && this.imageCache[this.imageIndex]) {
+        const imageUrl = this.imageCache[this.imageIndex].src;
+        children[0].style.background = `url(${imageUrl})`;
+        children[0].style.backgroundSize = "contain";
+
+        // Update image index
+        this.imageIndex = (this.imageIndex + 1) % this.frameCount;
+      }
+
+      // Schedule the next frame
+      this.animationFrameId = requestAnimationFrame(() =>
+        this.updateBackground()
+      );
+    }
+  }
+
+  @action
   toggleFullScreen() {
     this.fullScreen = !this.fullScreen;
   }
@@ -61,6 +114,7 @@ export default class Rewind extends Component {
   @action
   handleScroll({ target }) {
     let children = this.rewindContainer.getElementsByClassName("parallax-bg");
+
     for (let i = 0; i < children.length; i++) {
       children[i].style.transform = `translateY(-${
         (target.scrollTop * (i + 1)) / 5
@@ -80,6 +134,7 @@ export default class Rewind extends Component {
         (if this.fullScreen "-fullscreen")
       }}
       {{didInsert this.loadRewind}}
+      {{didInsert this.preLoadImages}}
       {{on "keydown" this.handleEscape}}
       {{didInsert this.registerRewindContainer}}
       tabindex="0"
@@ -87,7 +142,7 @@ export default class Rewind extends Component {
 
       <div class="rewind">
         <div class="background-1 parallax-bg"></div>
-        <div class="background-2 parallax-bg"></div>
+        <canvas class="background-2 parallax-bg"></canvas>
         {{#if this.loadingRewind}}
           <div class="rewind-loader">
             <div class="spinner small"></div>
