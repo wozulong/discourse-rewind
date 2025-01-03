@@ -59,16 +59,18 @@ export default class Rewind extends Component {
   }
 
   @action
-  handleScroll() {
-    window.addEventListener("scroll", () => {
-      let parent = document.getElementById("div.rewind");
-      let children = parent.getElementsByClassName(".parallax-bg");
-      for (let i = 0; i < children.length; i++) {
-        children[i].style.transform = `translateY(-${
-          (window.pageYOffset * i) / children.length
-        }px)`;
-      }
-    });
+  handleScroll({ target }) {
+    let children = this.rewindContainer.getElementsByClassName("parallax-bg");
+    for (let i = 1; i < children.length; i++) {
+      children[i].style.transform = `translateY(-${
+        (target.scrollTop * i) / children.length
+      }px)`;
+    }
+  }
+
+  @action
+  registerRewindContainer(element) {
+    this.rewindContainer = element;
   }
 
   <template>
@@ -79,12 +81,12 @@ export default class Rewind extends Component {
       }}
       {{didInsert this.loadRewind}}
       {{on "keydown" this.handleEscape}}
+      {{didInsert this.registerRewindContainer}}
       tabindex="0"
     >
 
       <div class="rewind">
-        <div class="background-1 parallax-bg">
-        </div>
+        <div class="background-1 parallax-bg"></div>
         <div class="background-2 parallax-bg"></div>
         {{#if this.loadingRewind}}
           <div class="rewind-loader">
@@ -92,24 +94,6 @@ export default class Rewind extends Component {
             <div class="rewind-loader__text">Crunching your data...</div>
           </div>
         {{else}}
-
-          {{! <img
-            src="/plugins/discourse-rewind/images/blue_blob.svg"
-            class="blob_1"
-          />
-          <img
-            src="/plugins/discourse-rewind/images/yellow_blob.svg"
-            class="blob_2"
-          />
-          <img
-            src="/plugins/discourse-rewind/images/red_blob.svg"
-            class="blob_3"
-          />
-          <img
-            src="/plugins/discourse-rewind/images/discourse_blob_1.svg"
-            class="blob_4"
-          /> }}
-
           <DButton
             class="rewind__exit-fullscreen-btn"
             @icon={{if this.fullScreen "discourse-compress" "discourse-expand"}}
@@ -119,6 +103,7 @@ export default class Rewind extends Component {
           <div
             class="rewind__scroll-wrapper"
             {{didInsert this.registerScrollWrapper}}
+            {{on "scroll" this.handleScroll}}
           >
             <div class="rewind-report">
               <Introduction />
