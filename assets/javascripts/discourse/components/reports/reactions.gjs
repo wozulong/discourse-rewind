@@ -16,6 +16,10 @@ export default class Reactions extends Component {
     ).reduce((acc, count) => acc + count, 0);
   }
 
+  get randomModifier() {
+    return Math.random();
+  }
+
   @action
   computePercentage(count) {
     return `${((count / this.totalPostUsedReactions) * 100).toFixed(2)}%`;
@@ -31,7 +35,10 @@ export default class Reactions extends Component {
       <h3 class="rewind-report-title">Most received reactions in topics</h3>
       <div class="rewind-report-container">
         {{#each-in @report.data.post_received_reactions as |emojiName count|}}
-          <div class="rewind-card scale">
+          <div
+            class="rewind-card scale"
+            style="--rand: {{this.randomModifier}}"
+          >
             <span class="rewind-card__emoji">{{replaceEmoji
                 (concat ":" emojiName ":")
               }}</span>

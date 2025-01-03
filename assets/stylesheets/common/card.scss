@@ -1,12 +1,128 @@
-.rewind-card {
-  box-shadow: 0 0 0 1px var(--primary-200);
-  border-radius: var(--d-border-radius);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 1em;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  background: var(--secondary);
+body {
+  --ambientAmount: 0.1;
+  --easeAmount: 0;
+  animation: ambientMovement;
+  animation-duration: 24s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.rewind-report-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.rewind-card__wrapper {
+  will-change: transform;
+  transform-style: preserve-3d;
+  background-color: hsla(0deg, 0%, 0%, 10%);
+  border-radius: 0.25vw;
+  cursor: pointer;
+  animation-name: ambientMovement;
+  animation-duration: 4000ms;
+  animation-delay: calc(-4000ms * var(--rand));
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transform: rotateZ(calc(var(--ambientAmount) * 10deg));
+  &__title {
+    font-weight: 600;
+  }
+  &__data {
+    font-family: monospace;
+    font-weight: normal;
+    font-size: 14px;
+  }
+  .rewind-card {
+    box-shadow: 0 0 0 1px var(--primary-200);
+    border-radius: var(--d-border-radius);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 1em;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary);
+    will-change: transform;
+    position: relative;
+    transform-style: preserve-3d;
+  }
+  &:hover .rewind-card {
+    animation-name: easeOutElastic;
+    animation-duration: 400ms;
+    animation-fill-mode: forwards;
+    transform: translateZ(calc(var(--easeAmount) * 50px));
+    box-shadow: 0 0.15em calc(0.5em + (var(--easeAmount) * 0.5em))
+      calc(-0.25em - (var(--easeAmount) * 0.25em)) currentColor;
+    z-index: 1;
+  }
+}
+
+@keyframes ambientMovement {
+  0% {
+    --ambientAmount: 0.1;
+  }
+  50% {
+    --ambientAmount: -0.1;
+  }
+  100% {
+    --ambientAmount: 0.1;
+  }
+}
+
+@keyframes card-hover {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  25% {
+    transform: translateY(-2px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(2px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes easeOutElastic {
+  0% {
+    --easeAmount: 0;
+  }
+  16% {
+    --easeAmount: 1.3227;
+  }
+  28% {
+    --easeAmount: 0.8688;
+  }
+  44% {
+    --easeAmount: 1.0463;
+  }
+  59% {
+    --easeAmount: 0.9836;
+  }
+  73% {
+    --easeAmount: 1.0058;
+  }
+  88% {
+    --easeAmount: 0.998;
+  }
+  100% {
+    --easeAmount: 1;
+  }
+}
+
+@property --easeAmount {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --ambientAmount {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.1;
 }
