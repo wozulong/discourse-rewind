@@ -70,6 +70,9 @@ export default class Rewind extends Component {
     >
 
       <div class="rewind">
+        <div class="background-1">
+        </div>
+        <div class="background-2"></div>
         {{#if this.loadingRewind}}
           <div class="rewind-loader">
             <div class="spinner small"></div>

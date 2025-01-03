@@ -34,17 +34,25 @@
   position: relative;
   overflow: hidden;
   max-width: 960px;
+  background: var(--secondary);
+}
+
+.background-1 {
   background: url(/plugins/discourse-rewind/images/bg-1.png);
   background-size: cover;
-  &::before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 300%;
-    background: url(/plugins/discourse-rewind/images/bg-2.png);
-    background-size: contain;
-  }
+  position: absolute;
+  transform: translateY(0px);
+  width: 100%;
+  height: 100%;
+}
+
+.background-2 {
+  position: absolute;
+  width: 100%;
+  height: 300%;
+  background: url(/plugins/discourse-rewind/images/bg-2.png);
+  background-size: contain;
+  transform: translateY(0px);
 }
 
 .rewind__scroll-wrapper {
