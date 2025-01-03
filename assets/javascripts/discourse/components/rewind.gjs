@@ -58,6 +58,19 @@ export default class Rewind extends Component {
     }
   }
 
+  @action
+  handleScroll() {
+    window.addEventListener("scroll", () => {
+      let parent = document.getElementById("div.rewind");
+      let children = parent.getElementsByClassName(".parallax-bg");
+      for (let i = 0; i < children.length; i++) {
+        children[i].style.transform = `translateY(-${
+          (window.pageYOffset * i) / children.length
+        }px)`;
+      }
+    });
+  }
+
   <template>
     <div
       class={{concatClass
@@ -70,9 +83,9 @@ export default class Rewind extends Component {
     >
 
       <div class="rewind">
-        <div class="background-1">
+        <div class="background-1 parallax-bg">
         </div>
-        <div class="background-2"></div>
+        <div class="background-2 parallax-bg"></div>
         {{#if this.loadingRewind}}
           <div class="rewind-loader">
             <div class="spinner small"></div>
