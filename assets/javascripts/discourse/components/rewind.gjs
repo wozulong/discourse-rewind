@@ -77,7 +77,7 @@ export default class Rewind extends Component {
           </div>
         {{else}}
 
-          <img
+          {{! <img
             src="/plugins/discourse-rewind/images/blue_blob.svg"
             class="blob_1"
           />
@@ -92,7 +92,7 @@ export default class Rewind extends Component {
           <img
             src="/plugins/discourse-rewind/images/discourse_blob_1.svg"
             class="blob_4"
-          />
+          /> }}
 
           <DButton
             class="rewind__exit-fullscreen-btn"
