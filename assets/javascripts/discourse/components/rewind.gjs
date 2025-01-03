@@ -115,6 +115,10 @@ export default class Rewind extends Component {
                   <Reactions @report={{report}} />
                 {{else if (eq report.identifier "word-cloud")}}
                   <WordCloud @report={{report}} />
+                {{else if (eq report.identifier "best-posts")}}
+                  <BestPosts @report={{report}} />
+                {{else if (eq report.identifier "best-topics")}}
+                  <BestTopics @report={{report}} />
                 {{else if (eq report.identifier "activity-calendar")}}
                   <ActivityCalendar @report={{report}} />
                 {{/if}}
