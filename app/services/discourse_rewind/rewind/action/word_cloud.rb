@@ -27,7 +27,7 @@ module DiscourseRewind
             ndoc DESC,
             word
           LIMIT
-            100
+            5
         ), lex AS (
           SELECT
             DISTINCT ON (lexeme) to_tsvector('english', word) as lexeme,

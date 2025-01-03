@@ -1,6 +1,5 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
-import { and, eq } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
 
 const ROWS = 7;
@@ -8,8 +7,6 @@ const COLS = 53;
 
 export default class ActivityCalendar extends Component {
   get rowsArray() {
-    console.log(this.args.report.data);
-
     const data = this.args.report.data;
     let rowsArray = [];
 

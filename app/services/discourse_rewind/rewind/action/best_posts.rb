@@ -10,7 +10,7 @@ module DiscourseRewind
           .where(deleted_at: nil)
           .where("post_number > 1")
           .order("like_count DESC NULLS LAST")
-          .limit(5)
+          .limit(3)
           .pluck(:id, :topic_id, :like_count, :reply_count, :raw, :cooked)
 
       { data: best_posts, identifier: "best-posts" }
