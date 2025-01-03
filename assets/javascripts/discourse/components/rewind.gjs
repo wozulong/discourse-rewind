@@ -61,9 +61,9 @@ export default class Rewind extends Component {
   @action
   handleScroll({ target }) {
     let children = this.rewindContainer.getElementsByClassName("parallax-bg");
-    for (let i = 1; i < children.length; i++) {
+    for (let i = 0; i < children.length; i++) {
       children[i].style.transform = `translateY(-${
-        (target.scrollTop * i) / children.length
+        (target.scrollTop * (i + 1)) / 5
       }px)`;
     }
   }
