@@ -32,9 +32,13 @@ export default class Reactions extends Component {
       <div class="rewind-report-container">
         {{#each-in @report.data.post_received_reactions as |emojiName count|}}
           <div class="rewind-card scale">
-            <span>{{replaceEmoji (concat ":" emojiName ":")}}</span>
-            <span>{{this.cleanEmoji emojiName}}</span>
-            <span>{{count}} times</span>
+            <span class="rewind-card__emoji">{{replaceEmoji
+                (concat ":" emojiName ":")
+              }}</span>
+            <span class="rewind-card__title">{{this.cleanEmoji
+                emojiName
+              }}</span>
+            <span class="rewind-card__data">{{count}} times</span>
           </div>
         {{/each-in}}
       </div>

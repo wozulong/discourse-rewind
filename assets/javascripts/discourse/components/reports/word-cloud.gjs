@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 
+// eslint-disable-next-line ember/no-empty-glimmer-component-classes
 export default class WordCloud extends Component {
   <template>
     <div class="rewind-report-page -word-cloud">
@@ -7,8 +8,8 @@ export default class WordCloud extends Component {
       <div class="rewind-report-container">
         {{#each-in @report.data as |word count|}}
           <div class="rewind-card">
-            <span>{{word}}</span>
-            <span>{{count}} times</span>
+            <span class="rewind-card__title">{{word}}</span>
+            <span class="rewind-card__data">{{count}} times</span>
           </div>
         {{/each-in}}
       </div>
