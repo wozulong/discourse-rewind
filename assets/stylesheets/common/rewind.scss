@@ -1,17 +1,3 @@
-:root {
-  --frame-1: url(/plugins/discourse-rewind/images/bg-frames/bg-2_1.png);
-  --frame-2: url(/plugins/discourse-rewind/images/bg-frames/bg-2_2.png);
-  --frame-3: url(/plugins/discourse-rewind/images/bg-frames/bg-2_3.png);
-  --frame-4: url(/plugins/discourse-rewind/images/bg-frames/bg-2_4.png);
-  --frame-5: url(/plugins/discourse-rewind/images/bg-frames/bg-2_5.png);
-  --frame-6: url(/plugins/discourse-rewind/images/bg-frames/bg-2_6.png);
-  --frame-7: url(/plugins/discourse-rewind/images/bg-frames/bg-2_7.png);
-  --frame-8: url(/plugins/discourse-rewind/images/bg-frames/bg-2_8.png);
-  --frame-9: url(/plugins/discourse-rewind/images/bg-frames/bg-2_9.png);
-  --frame-10: url(/plugins/discourse-rewind/images/bg-frames/bg-2_10.png);
-  --frame-11: url(/plugins/discourse-rewind/images/bg-frames/bg-2_11.png);
-}
-
 .rewind-container {
   border-radius: var(--d-border-radius);
   box-sizing: border-box;
@@ -61,15 +47,12 @@
 }
 
 .background-2 {
-  --frame: var(--frame-1);
   position: absolute;
   width: 100%;
   height: 1000%;
-  background: var(--frame);
+  background: url(/plugins/discourse-rewind/images/bg-2.png);
   background-size: contain;
   transform: translateY(0px);
-  will-change: background;
-  backface-visibility: hidden;
 }
 
 .rewind__scroll-wrapper {
