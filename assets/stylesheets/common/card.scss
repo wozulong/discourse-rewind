@@ -9,7 +9,6 @@ body {
 
 .rewind-report-container {
   perspective: 1000px;
-  transform-style: preserve-3d;
   gap: 0.5em;
 }
 
@@ -72,7 +71,7 @@ body {
 
 .rewind-card {
   background-color: var(--secondary);
-  box-shadow: 0 0 0 1px var(--primary-200);
+  box-shadow: 0 0 0 1px var(--primary-300), 0 0 0 3px var(--primary-100);
   border-radius: var(--d-border-radius);
   display: flex;
   flex-direction: column;
@@ -82,12 +81,14 @@ body {
   align-items: center;
   justify-content: center;
   &__title {
+    font-family: var(--heading-font) !important;
     font-weight: 600;
+    -webkit-font-smoothing: antialiased;
   }
   &__data {
-    font-family: monospace;
     font-weight: normal;
     font-size: 14px;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
@@ -101,57 +102,6 @@ body {
   100% {
     --ambientAmount: 0.1;
   }
-}
-
-@keyframes card-hover {
-  0% {
-    transform: translateY(0) rotate(0);
-  }
-  25% {
-    transform: translateY(-2px) rotate(2deg);
-  }
-  50% {
-    transform: translateY(-4px) rotate(-1deg);
-  }
-  75% {
-    transform: translateY(2px) rotate(-2deg);
-  }
-  100% {
-    transform: translateY(0) rotate(0);
-  }
-}
-
-@keyframes easeOutElastic {
-  0% {
-    --easeAmount: 0;
-  }
-  16% {
-    --easeAmount: 1.3227;
-  }
-  28% {
-    --easeAmount: 0.8688;
-  }
-  44% {
-    --easeAmount: 1.0463;
-  }
-  59% {
-    --easeAmount: 0.9836;
-  }
-  73% {
-    --easeAmount: 1.0058;
-  }
-  88% {
-    --easeAmount: 0.998;
-  }
-  100% {
-    --easeAmount: 1;
-  }
-}
-
-@property --easeAmount {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
 }
 
 @property --ambientAmount {

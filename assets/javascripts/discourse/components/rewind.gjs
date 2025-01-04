@@ -29,9 +29,6 @@ export default class Rewind extends Component {
   @tracked fullScreen = true;
   @tracked loadingRewind = false;
 
-  imageIndex = 1;
-  frameCount = 11;
-
   @action
   registerScrollWrapper(element) {
     this.scrollWrapper = element;
@@ -69,20 +66,6 @@ export default class Rewind extends Component {
       children[i].style.transform = `translateY(-${
         (target.scrollTop * (i + 1)) / 5
       }px)`;
-      // if (
-      //   children[i].classList.contains("background-2") &&
-      //   target.scrollTop % 6 === 0
-      // ) {
-      //   children[i].style.setProperty(
-      //     "--frame",
-      //     `var(--frame-${this.imageIndex})`
-      //   );
-      //   if (this.imageIndex === 10) {
-      //     this.imageIndex = 1;
-      //   } else {
-      //     this.imageIndex++;
-      //   }
-      // }
     }
   }
 
