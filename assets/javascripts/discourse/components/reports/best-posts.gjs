@@ -9,7 +9,6 @@ export default class BestPosts extends Component {
     <div class="rewind-report-page -best-posts">
       <h2 class="rewind-report-title">Your 3 best posts</h2>
       <div class="rewind-report-container">
-        {{log @report.data}}
         {{#each @report.data as |post|}}
           <div class="rewind-card">
             <div class="best-posts__post">{{htmlSafe (get post "5")}}</div>

@@ -12,63 +12,6 @@ body {
   gap: 0.5em;
 }
 
-.rewind-card__wrapper {
-  width: 150px;
-  height: 100px;
-  perspective: 1000px;
-  will-change: transform;
-  transform-style: preserve-3d;
-  border-radius: 0.25vw;
-  cursor: pointer;
-  animation-name: ambientMovement;
-  animation-duration: 4000ms;
-  animation-delay: calc(-4000ms * var(--rand));
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
-  transform: rotateZ(calc(var(--ambientAmount) * 10deg));
-  z-index: 1;
-  .rewind-card__inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transform-style: preserve-3d;
-    transition: transform;
-    transition-duration: 0.5s;
-    transition-timing-function: cubic-bezier(0.73, 0.42, 0.03, 0.78);
-  }
-  &:hover .rewind-card__inner {
-    transform: rotateY(180deg);
-  }
-  &:hover {
-    animation: flip-zoom 0.5s cubic-bezier(0.73, 0.42, 0.03, 0.78) 0s forwards;
-    z-index: 999;
-  }
-  .rewind-card.-back {
-    transform: rotateY(180deg);
-  }
-  .rewind-card.-front,
-  .rewind-card.-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; /* Safari */
-    backface-visibility: hidden;
-  }
-}
-
-@keyframes flip-zoom {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1.25);
-  }
-}
-
 .rewind-card {
   background-color: var(--secondary);
   border: 1px solid var(--primary-300);
@@ -91,22 +34,4 @@ body {
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
   }
-}
-
-@keyframes ambientMovement {
-  0% {
-    --ambientAmount: 0.1;
-  }
-  50% {
-    --ambientAmount: -0.1;
-  }
-  100% {
-    --ambientAmount: 0.1;
-  }
-}
-
-@property --ambientAmount {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0.1;
 }

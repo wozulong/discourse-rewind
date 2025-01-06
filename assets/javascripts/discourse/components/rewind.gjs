@@ -19,7 +19,7 @@ import FBFF from "discourse/plugins/discourse-rewind/discourse/components/report
 import Introduction from "discourse/plugins/discourse-rewind/discourse/components/reports/introduction";
 import Reactions from "discourse/plugins/discourse-rewind/discourse/components/reports/reactions";
 import ReadingTime from "discourse/plugins/discourse-rewind/discourse/components/reports/reading-time";
-import WordCloud from "discourse/plugins/discourse-rewind/discourse/components/reports/word-cloud";
+import WordCards from "discourse/plugins/discourse-rewind/discourse/components/reports/word-cards";
 
 export default class Rewind extends Component {
   @service siteSettings;
@@ -88,7 +88,7 @@ export default class Rewind extends Component {
 
       <div class="rewind">
         <div class="background-1 parallax-bg"></div>
-        <canvas class="background-2 parallax-bg"></canvas>
+        {{! <canvas class="background-2 parallax-bg"></canvas> }}
         {{#if this.loadingRewind}}
           <div class="rewind-loader">
             <div class="spinner small"></div>
@@ -115,7 +115,7 @@ export default class Rewind extends Component {
                 {{#if (eq report.identifier "reactions")}}
                   <Reactions @report={{report}} />
                 {{else if (eq report.identifier "word-cloud")}}
-                  <WordCloud @report={{report}} />
+                  <WordCards @report={{report}} />
                 {{else if (eq report.identifier "best-posts")}}
                   <BestPosts @report={{report}} />
                 {{else if (eq report.identifier "best-topics")}}

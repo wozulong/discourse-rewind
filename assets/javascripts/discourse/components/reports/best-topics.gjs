@@ -1,23 +1,45 @@
 import Component from "@glimmer/component";
 import { concat } from "@ember/helper";
+import { htmlSafe } from "@ember/template";
+import emoji from "discourse/helpers/emoji";
 
-// eslint-disable-next-line ember/no-empty-glimmer-component-classes
 export default class BestTopics extends Component {
+  rank(idx) {
+    return idx + 1;
+  }
+
+  emojiName(rank) {
+    if (rank + 1 === 1) {
+      return "1st_place_medal";
+    } else if (rank + 1 === 2) {
+      return "2nd_place_medal";
+    } else if (rank + 1 === 3) {
+      return "3rd_place_medal";
+    } else {
+      return "medal";
+    }
+  }
+
   <template>
     <div class="rewind-report-page -best-topics">
       <h2 class="rewind-report-title">Your 3 best topics</h2>
       <div class="rewind-report-container">
-        {{!-- {{log @report.data}} --}}
-        {{#each @report.data as |topic|}}
-          <div class="rewind-card">
+        {{log @report.data}}
+        <div class="rewind-card">
+          {{#each @report.data as |topic idx|}}
             <a
               href={{concat "/t/-/" topic.topic_id}}
-              class="best-topics__title"
+              class={{concat "best-topics__topic" " rank-" (this.rank idx)}}
             >
-              {{topic.title}}
+              <span class="best-topics__rank">{{emoji
+                  (this.emojiName idx)
+                }}</span><h2>{{topic.title}}</h2>
+              <span class="best-topics__excerpt">{{htmlSafe
+                  topic.excerpt
+                }}</span>
             </a>
-          </div>
-        {{/each}}
+          {{/each}}
+        </div>
       </div>
     </div>
   </template>

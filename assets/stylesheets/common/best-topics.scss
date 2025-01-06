@@ -3,4 +3,62 @@
     flex-direction: column;
     gap: 1em;
   }
+  .best-topics__title {
+    color: var(--primary);
+  }
+  .rewind-card {
+    gap: 1em;
+    align-items: flex-start;
+    max-width: 700px;
+    background: none;
+    border: none;
+  }
+  .best-topics__topic {
+    padding: 1em;
+    position: relative;
+    color: var(--primary);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    max-width: 700px;
+    &.rank-1 {
+      --background: #ffe46a;
+      --border-color: #ffd82a;
+    }
+    &.rank-2 {
+      --background: #d6d6d6;
+      --border-color: #c4c4c4;
+    }
+    &.rank-3 {
+      --background: #dca570;
+      --border-color: #cd7f32;
+    }
+    background: var(--secondary);
+    border: 1px solid var(--primary-300);
+  }
+  .best-topics__rank {
+    position: absolute;
+    top: -15px;
+    left: -19px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+    border: 1px solid var(--primary-300);
+  }
+  .best-topics__rank img.emoji {
+    display: block;
+  }
+  .best-topics__excerpt {
+    font-size: var(--font-down-2);
+    font-weight: 400;
+    color: var(--primary-800);
+    text-align: left;
+    &:empty {
+      display: none;
+    }
+  }
 }
