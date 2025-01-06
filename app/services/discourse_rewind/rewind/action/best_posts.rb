@@ -11,7 +11,7 @@ module DiscourseRewind
           .where("post_number > 1")
           .order("like_count DESC NULLS LAST")
           .limit(3)
-          .pluck(:id, :topic_id, :like_count, :reply_count, :raw, :cooked)
+          .pluck(:post_number, :topic_id, :like_count, :reply_count, :raw, :cooked)
 
       { data: best_posts, identifier: "best-posts" }
     end

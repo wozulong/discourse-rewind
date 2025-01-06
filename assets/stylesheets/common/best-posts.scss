@@ -3,4 +3,35 @@
     flex-direction: column;
     gap: 1em;
   }
+  .rewind-card {
+    max-width: 700px;
+    text-align: left;
+    align-items: unset;
+  }
+  .best-posts__post {
+    font-weight: normal;
+    font-size: 16px;
+    width: 100%;
+    text-align: left;
+  }
+  .best-posts__metadata {
+    font-weight: normal;
+    font-size: 12px;
+    display: flex;
+    gap: 10px;
+    color: var(--primary-700);
+    align-items: center;
+  }
+  .best-posts__likes,
+  .best-posts__replies {
+    border: 1px solid var(--primary-200);
+    padding: 3px 8px;
+    border-radius: 5px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    svg {
+      color: var(--primary-700);
+    }
+  }
 }

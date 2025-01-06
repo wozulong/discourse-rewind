@@ -71,8 +71,9 @@ body {
 
 .rewind-card {
   background-color: var(--secondary);
-  box-shadow: 0 0 0 1px var(--primary-300), 0 0 0 3px var(--primary-100);
+  border: 1px solid var(--primary-300);
   border-radius: var(--d-border-radius);
+  background-size: cover;
   display: flex;
   flex-direction: column;
   text-align: center;

@@ -4,7 +4,7 @@ import { concat } from "@ember/helper";
 export default class FavoriteCategories extends Component {
   <template>
     <div class="rewind-report-page -favorite-categories">
-      <h3 class="rewind-report-title">Your favorite categories</h3>
+      <h2 class="rewind-report-title">Your favorite categories</h2>
       <div class="rewind-report-container">
         {{#each @report.data as |data|}}
           <div class="rewind-card">

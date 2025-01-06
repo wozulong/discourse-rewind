@@ -10,10 +10,12 @@
   h4,
   h5 {
     font-family: var(--heading-font);
+    -webkit-font-smoothing: antialiased;
   }
 
   p,
   span {
     font-family: var(--regular-font);
+    -webkit-font-smoothing: antialiased;
   }
 }

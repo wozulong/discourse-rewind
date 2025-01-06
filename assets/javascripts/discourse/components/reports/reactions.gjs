@@ -32,7 +32,7 @@ export default class Reactions extends Component {
 
   <template>
     <div class="rewind-report-page -post-received-reactions">
-      <h3 class="rewind-report-title">Most received reactions in topics</h3>
+      <h2 class="rewind-report-title">Most received reactions in topics</h2>
       <div class="rewind-report-container">
         {{#each-in @report.data.post_received_reactions as |emojiName count|}}
           <div
@@ -53,7 +53,7 @@ export default class Reactions extends Component {
 
     <div class="rewind-report-page -post-used-reactions">
       <div class="rewind-card">
-        <h3 class="rewind-report-title">Most used reactions in topics</h3>
+        <h2 class="rewind-report-title">Most used reactions in topics</h2>
         <div class="rewind-reactions-chart">
           {{#each-in @report.data.post_used_reactions as |emojiName count|}}
             <div class="rewind-reactions-row">
