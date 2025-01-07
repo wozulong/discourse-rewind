@@ -10,7 +10,7 @@ module DiscourseRewind
       {
         data: {
           reading_time: reading_time,
-          books: best_book_fit(reading_time),
+          book: best_book_fit(reading_time),
         },
         identifier: "reading-time",
       }
@@ -44,11 +44,13 @@ module DiscourseRewind
     def best_book_fit(reading_time)
       reading_time_rest = reading_time
       books = []
+
       while reading_time_rest > 0
         books << popular_book_reading_time.min_by { |_, v| (v - reading_time_rest).abs }.first
         reading_time_rest -= popular_book_reading_time[books.last]
       end
-      books.group_by(&:itself).transform_values(&:count)
+
+      books.group_by(&:itself).transform_values(&:count).max_by { |_, count| count }.first
     end
   end
 end

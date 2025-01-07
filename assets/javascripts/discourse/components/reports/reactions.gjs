@@ -31,6 +31,7 @@ export default class Reactions extends Component {
   }
 
   <template>
+    {{log @report}}
     <div class="rewind-report-page -post-received-reactions">
       <h2 class="rewind-report-title">Most received reactions in topics</h2>
       <div class="rewind-report-container">

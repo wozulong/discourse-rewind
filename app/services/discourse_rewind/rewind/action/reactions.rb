@@ -42,7 +42,7 @@ module DiscourseRewind
     end
 
     def enabled?
-      SiteSetting.discourse_reaction_enabled || SiteSetting.chat_enabled
+      SiteSetting.discourse_reactions_enabled || SiteSetting.chat_enabled
     end
 
     def sort_and_limit(reactions)

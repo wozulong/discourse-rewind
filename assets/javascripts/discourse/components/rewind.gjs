@@ -124,6 +124,8 @@ export default class Rewind extends Component {
                   <ActivityCalendar @report={{report}} />
                 {{else if (eq report.identifier "favorite-tags")}}
                   <FavoriteTags @report={{report}} />
+                {{else if (eq report.identifier "reading-time")}}
+                  <ReadingTime @report={{report}} />
                 {{else if (eq report.identifier "favorite-categories")}}
                   <FavoriteCategories @report={{report}} />
                 {{/if}}
