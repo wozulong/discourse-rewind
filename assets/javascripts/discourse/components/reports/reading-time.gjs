@@ -1,13 +1,29 @@
 import Component from "@glimmer/component";
 
-// eslint-disable-next-line ember/no-empty-glimmer-component-classes
 export default class ReadingTime extends Component {
+  get readTimeString() {
+    let totalMinutes = Math.floor(this.args.report.data.reading_time / 60);
+    let leftOverMinutes = totalMinutes % 60;
+    let totalHours = (totalMinutes - leftOverMinutes) / 60;
+
+    return `${totalHours}h ${leftOverMinutes}m`;
+  }
+
   <template>
     <div class="rewind-report-page -reading-time">
-      <h2 class="rewind-report-title">Reading time</h2>
       <div class="rewind-report-container">
-        <span class="reading-time__time">{{@report.data.reading_time}}</span>
-        <span class="reading-time__book">{{@report.data.book}}</span>
+        <p class="reading-time__text">You spent
+          <code>{{this.readTimeString}}</code>
+          reading on our site! That's the time it would take to read through
+          <i>{{@report.data.book}}</i></p>
+        <div class="reading-time__book">
+          <div class="book">
+            <img
+              alt=""
+              src="/plugins/discourse-rewind/images/books/{{@report.data.isbn}}.jpg"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </template>

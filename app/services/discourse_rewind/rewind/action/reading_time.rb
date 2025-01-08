@@ -10,34 +10,35 @@ module DiscourseRewind
       {
         data: {
           reading_time: reading_time,
-          book: best_book_fit(reading_time),
+          book: best_book_fit(reading_time)[:title],
+          isbn: best_book_fit(reading_time)[:isbn]
         },
         identifier: "reading-time",
       }
     end
 
-    def popular_book_reading_time
+    def popular_books
       {
-        "The Hunger Games" => 19_740,
-        "The Metamorphosis" => 3120,
-        "To Kill a Mockingbird" => 22_800,
-        "Pride and Prejudice" => 25_200,
-        "1984" => 16_800,
-        "The Lord of the Rings" => 108_000,
-        "Harry Potter and the Sorcerer's Stone" => 24_600,
-        "The Great Gatsby" => 12_600,
-        "The Little Prince" => 5400,
-        "Animal Farm" => 7200,
-        "The Catcher in the Rye" => 18_000,
-        "Jane Eyre" => 34_200,
-        "Fahrenheit 451" => 15_000,
-        "The Hobbit" => 27_000,
-        "The Da Vinci Code" => 37_800,
-        "Little Women" => 30_000,
-        "One Hundred Years of Solitude" => 46_800,
-        "And Then There Were None" => 16_200,
-        "The Alchemist" => 10_800,
-        "The Hitchhiker's Guide to the Galaxy" => 12_600,
+        "The Hunger Games" => { reading_time: 19_740, isbn: "978-0439023481" },
+        "The Metamorphosis" => { reading_time: 3120, isbn: "978-0553213690" },
+        "To Kill a Mockingbird" => { reading_time: 22_800, isbn: "978-0061120084" },
+        "Pride and Prejudice" => { reading_time: 25_200, isbn: "978-1503290563" },
+        "1984" => { reading_time: 16_800, isbn: "978-0451524935" },
+        "The Lord of the Rings" => { reading_time: 108_000, isbn: "978-0544003415" },
+        "Harry Potter and the Sorcerer's Stone" => { reading_time: 24_600, isbn: "978-0590353427" },
+        "The Great Gatsby" => { reading_time: 12_600, isbn: "978-0743273565" },
+        "The Little Prince" => { reading_time: 5400, isbn: "978-0156012195" },
+        "Animal Farm" => { reading_time: 7200, isbn: "978-0451526342" },
+        "The Catcher in the Rye" => { reading_time: 18_000, isbn: "978-0316769488" },
+        "Jane Eyre" => { reading_time: 34_200, isbn: "978-0141441146" },
+        "Fahrenheit 451" => { reading_time: 15_000, isbn: "978-1451673319" },
+        "The Hobbit" => { reading_time: 27_000, isbn: "978-0547928227" },
+        "The Da Vinci Code" => { reading_time: 37_800, isbn: "978-0307474278" },
+        "Little Women" => { reading_time: 30_000, isbn: "978-0147514011" },
+        "One Hundred Years of Solitude" => { reading_time: 46_800, isbn: "978-0060883287" },
+        "And Then There Were None" => { reading_time: 16_200, isbn: "978-0062073488" },
+        "The Alchemist" => { reading_time: 10_800, isbn: "978-0061122415" },
+        "The Hitchhiker's Guide to the Galaxy" => { reading_time: 12_600, isbn: "978-0345391803" },
       }.symbolize_keys
     end
 
@@ -46,11 +47,23 @@ module DiscourseRewind
       books = []
 
       while reading_time_rest > 0
-        books << popular_book_reading_time.min_by { |_, v| (v - reading_time_rest).abs }.first
-        reading_time_rest -= popular_book_reading_time[books.last]
+        best_fit = popular_books.min_by { |_, v| (v[:reading_time] - reading_time_rest).abs }
+        break if best_fit.nil?
+
+        books << best_fit.first
+        reading_time_rest -= best_fit.last[:reading_time]
       end
 
-      books.group_by(&:itself).transform_values(&:count).max_by { |_, count| count }.first
+      book_title = books.group_by { |book| book }
+                        .transform_values(&:count)
+                        .max_by { |_, count| count }
+                        .first
+      # popular_books[book_title]
+
+      {
+        title: book_title,
+        isbn: popular_books[book_title][:isbn],
+      }
     end
   end
 end
