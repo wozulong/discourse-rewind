@@ -3,9 +3,22 @@
 # For a most user / received reactions cards
 module DiscourseRewind
   class Rewind::Action::Reactions < Rewind::Action::BaseReport
-    def call
-      data = {}
+    FakeData = {
+      data: {
+        post_received_reactions: {
+          "open_mouth" => 10,
+        },
+        post_used_reactions: {
+          "open_mouth" => 10,
+        },
+      },
+      identifier: "reactions",
+    }
 
+    def call
+      return FakeData if Rails.env.development?
+
+      data = {}
       if defined?(DiscourseReactions::Reaction)
         # This is missing heart reactions (default like)
         data[:post_used_reactions] = DiscourseReactions::Reaction

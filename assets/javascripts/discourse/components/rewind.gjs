@@ -109,7 +109,7 @@ export default class Rewind extends Component {
             <div class="rewind-report">
               <Introduction />
             </div>
-            {{log this.rewind}}
+
             {{#each this.rewind as |report|}}
               <div class={{concatClass "rewind-report" report.identifier}}>
                 {{#if (eq report.identifier "reactions")}}

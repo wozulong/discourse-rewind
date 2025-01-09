@@ -3,7 +3,21 @@
 # User Word Cloud
 module DiscourseRewind
   class Rewind::Action::WordCloud < Rewind::Action::BaseReport
+    FakeData = {
+      data: [
+        { word: "what", score: 100 },
+        { word: "have", score: 90 },
+        { word: "you", score: 80 },
+        { word: "achieved", score: 70 },
+        { word: "this", score: 60 },
+        { word: "week", score: 50 },
+      ],
+      identifier: "word-cloud",
+    }
+
     def call
+      return FakeData if Rails.env.development?
+
       words = DB.query(<<~SQL, user_id: user.id, date_start: date.first, date_end: date.last)
         WITH popular_words AS (
           SELECT
@@ -27,7 +41,7 @@ module DiscourseRewind
             ndoc DESC,
             word
           LIMIT
-            5
+            100
         ), lex AS (
           SELECT
             DISTINCT ON (lexeme) to_tsvector('english', word) as lexeme,
@@ -65,7 +79,7 @@ module DiscourseRewind
         LIMIT 100
       SQL
 
-      word_score = words.map { [_1.original_word, _1.ndoc + _1.nentry] }.to_h
+      word_score = words.map { { word: _1.original_word, score: _1.ndoc + _1.nentry } }
 
       { data: word_score, identifier: "word-cloud" }
     end
