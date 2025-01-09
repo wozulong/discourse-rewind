@@ -3,7 +3,6 @@ import { tracked } from "@glimmer/tracking";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
-import { schedule } from "@ember/runloop";
 import { service } from "@ember/service";
 import { eq } from "truth-helpers";
 import DButton from "discourse/components/d-button";
@@ -85,7 +84,6 @@ export default class Rewind extends Component {
       {{didInsert this.registerRewindContainer}}
       tabindex="0"
     >
-
       <div class="rewind">
         <div class="background-1 parallax-bg"></div>
         {{! <canvas class="background-2 parallax-bg"></canvas> }}
@@ -112,7 +110,9 @@ export default class Rewind extends Component {
 
             {{#each this.rewind as |report|}}
               <div class={{concatClass "rewind-report" report.identifier}}>
-                {{#if (eq report.identifier "reactions")}}
+                {{#if (eq report.identifier "fbff")}}
+                  <FBFF @report={{report}} />
+                {{else if (eq report.identifier "reactions")}}
                   <Reactions @report={{report}} />
                 {{else if (eq report.identifier "word-cloud")}}
                   <WordCards @report={{report}} />
@@ -129,23 +129,6 @@ export default class Rewind extends Component {
                 {{else if (eq report.identifier "favorite-categories")}}
                   <FavoriteCategories @report={{report}} />
                 {{/if}}
-                {{!-- {{else if (eq report.identifier "fbff")}}
-                  <FBFF @report={{report}} />
-                {{else if (eq report.identifier "word-cloud")}}
-                  <WordCloud @report={{report}} />
-                {{else if (eq report.identifier "activity-calendar")}}
-                  <ActivityCalendar @report={{report}} />
-                {{else if (eq report.identifier "best-posts")}}
-                  <BestPosts @report={{report}} />
-                {{else if (eq report.identifier "best-topics")}}
-                  <BestTopics @report={{report}} />
-                {{else if (eq report.identifier "favorite-tags")}}
-                  <FavoriteTags @report={{report}} />
-                {{else if (eq report.identifier "favorite-categories")}}
-                  <FavoriteCategories @report={{report}} />
-                {{else if (eq report.identifier "reading-time")}}
-                  <ReadingTime @report={{report}} />
-                {{/if}} --}}
               </div>
             {{/each}}
           </div>

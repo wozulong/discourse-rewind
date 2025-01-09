@@ -4,9 +4,9 @@
 # Score is informative only, do not show in UI
 module DiscourseRewind
   class Rewind::Action::Fbff < Rewind::Action::BaseReport
-    MAX_SUMMARY_RESULTS = 50
-    LIKE_SCORE = 1
-    REPLY_SCORE = 10
+    MAX_SUMMARY_RESULTS ||= 50
+    LIKE_SCORE ||= 1
+    REPLY_SCORE ||= 10
 
     def call
       most_liked_users =
@@ -58,15 +58,21 @@ module DiscourseRewind
         apply_score(users_i_most_replied, REPLY_SCORE),
       ]
 
-      fbffs =
+      fbff_id =
         fbffs
           .flatten
           .inject { |h1, h2| h1.merge(h2) { |_, v1, v2| v1 + v2 } }
           .sort_by { |_, v| -v }
-          .first(6)
-          .to_h
+          .first
+          .first
 
-      { data: fbffs, identifier: "fbff" }
+      {
+        data: {
+          fbff: BasicUserSerializer.new(User.find(fbff_id), root: false).as_json,
+          yourself: BasicUserSerializer.new(user, root: false).as_json,
+        },
+        identifier: "fbff",
+      }
     end
 
     def post_query(user, date)

@@ -30,12 +30,15 @@ export default class Reactions extends Component {
     return htmlSafe(`width: ${this.computePercentage(count)}`);
   }
 
+  get receivedReactions() {
+    return this.args.report.data.post_received_reactions ?? {};
+  }
+
   <template>
-    {{log @report}}
     <div class="rewind-report-page -post-received-reactions">
       <h2 class="rewind-report-title">Most received reactions in topics</h2>
       <div class="rewind-report-container">
-        {{#each-in @report.data.post_received_reactions as |emojiName count|}}
+        {{#each-in this.receivedReactions as |emojiName count|}}
           <div
             class="rewind-card scale"
             style="--rand: {{this.randomModifier}}"

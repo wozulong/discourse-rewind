@@ -6,10 +6,32 @@ module DiscourseRewind
     FakeData = {
       data: {
         post_received_reactions: {
-          "open_mouth" => 10,
+          "open_mouth" => 2,
+          "cat" => 32,
+          "dog" => 34,
+          "heart" => 45,
+          "grinning" => 82,
         },
         post_used_reactions: {
-          "open_mouth" => 10,
+          "open_mouth" => 2,
+          "cat" => 32,
+          "dog" => 34,
+          "heart" => 45,
+          "grinning" => 82,
+        },
+        chat_used_reactions: {
+          "open_mouth" => 2,
+          "cat" => 32,
+          "dog" => 34,
+          "heart" => 45,
+          "grinning" => 82,
+        },
+        chat_received_reactions: {
+          "open_mouth" => 2,
+          "cat" => 32,
+          "dog" => 34,
+          "heart" => 45,
+          "grinning" => 82,
         },
       },
       identifier: "reactions",
@@ -21,34 +43,38 @@ module DiscourseRewind
       data = {}
       if defined?(DiscourseReactions::Reaction)
         # This is missing heart reactions (default like)
-        data[:post_used_reactions] = DiscourseReactions::Reaction
-          .by_user(user)
-          .where(created_at: date)
-          .group(:reaction_value)
-          .count
+        data[:post_used_reactions] = sort_and_limit(
+          DiscourseReactions::Reaction
+            .by_user(user)
+            .where(created_at: date)
+            .group(:reaction_value)
+            .count,
+        )
 
-        data[:post_received_reactions] = DiscourseReactions::Reaction
-          .includes(:post)
-          .where(posts: { user_id: user.id })
-          .where(created_at: date)
-          .group(:reaction_value)
-          .limit(5)
-          .count
+        data[:post_received_reactions] = sort_and_limit(
+          DiscourseReactions::Reaction
+            .includes(:post)
+            .where(posts: { user_id: user.id })
+            .where(created_at: date)
+            .group(:reaction_value)
+            .limit(5)
+            .count,
+        )
       end
 
       if SiteSetting.chat_enabled
-        data[:chat_used_reactions] = Chat::MessageReaction
-          .where(user: user)
-          .where(created_at: date)
-          .group(:emoji)
-          .count
+        data[:chat_used_reactions] = sort_and_limit(
+          Chat::MessageReaction.where(user: user).where(created_at: date).group(:emoji).count,
+        )
 
-        data[:chat_received_reactions] = Chat::MessageReaction
-          .includes(:chat_message)
-          .where(chat_message: { user_id: user.id })
-          .where(created_at: date)
-          .group(:emoji)
-          .count
+        data[:chat_received_reactions] = sort_and_limit(
+          Chat::MessageReaction
+            .includes(:chat_message)
+            .where(chat_message: { user_id: user.id })
+            .where(created_at: date)
+            .group(:emoji)
+            .count,
+        )
       end
 
       { data:, identifier: "reactions" }
@@ -59,7 +85,7 @@ module DiscourseRewind
     end
 
     def sort_and_limit(reactions)
-      reactions.sort_by { |_, v| -v }.first(6).to_h
+      reactions.sort_by { |_, v| -v }.first(5).to_h
     end
   end
 end

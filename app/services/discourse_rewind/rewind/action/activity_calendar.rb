@@ -4,7 +4,17 @@
 # https://docs.github.com/assets/cb-35216/mw-1440/images/help/profile/contributions-graph.webp
 module DiscourseRewind
   class Rewind::Action::ActivityCalendar < Rewind::Action::BaseReport
+    FakeData = {
+      data:
+        (Date.new(2024, 1, 1)..Date.new(2024, 12, 31)).map do |date|
+          { date:, post_count: rand(0..20), visited: false }
+        end,
+      identifier: "activity-calendar",
+    }
+
     def call
+      return FakeData if Rails.env.development?
+
       calendar =
         Post
           .unscoped

@@ -24,7 +24,6 @@ export default class BestTopics extends Component {
     <div class="rewind-report-page -best-topics">
       <h2 class="rewind-report-title">Your 3 best topics</h2>
       <div class="rewind-report-container">
-        {{log @report.data}}
         <div class="rewind-card">
           {{#each @report.data as |topic idx|}}
             <a
