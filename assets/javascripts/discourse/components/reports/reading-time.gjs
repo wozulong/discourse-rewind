@@ -20,7 +20,7 @@ export default class ReadingTime extends Component {
           <div class="book">
             <img
               alt=""
-              src="/plugins/discourse-rewind/images/books/{{@report.data.isbn}}.jpg"
+              src="/plugins/discourse-rewind/images/books/978-0451524935.jpg"
             />
           </div>
         </div>

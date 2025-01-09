@@ -1,13 +1,6 @@
-.rewind-report-page.-word-cloud {
-  .rewind-card__image img {
-    width: 35px;
-    height: 35px;
-  }
-}
-
 .rewind-card__wrapper {
   width: 150px;
-  height: 100px;
+  height: 175px;
   perspective: 1000px;
   will-change: transform;
   transform-style: preserve-3d;
@@ -20,6 +13,10 @@
   animation-timing-function: ease-in-out;
   transform: rotateZ(calc(var(--ambientAmount) * 10deg));
   z-index: 1;
+  .rewind-card {
+    box-shadow: 0 0 0 4px var(--mystery-color);
+    border: none;
+  }
   .rewind-card__inner {
     position: relative;
     width: 100%;
@@ -39,6 +36,8 @@
   }
   .rewind-card.-back {
     transform: rotateY(180deg);
+    background-color: var(--secondary);
+    border: 1px solid var(--primary-100);
   }
   .rewind-card.-front,
   .rewind-card.-back {
@@ -47,6 +46,39 @@
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+  }
+  .rewind-card.-front {
+    padding: 0.5em;
+    display: grid;
+    grid-template:
+      "tl .  . " 1fr
+      ".  .  . " 1fr
+      ".  cr . " 3fr
+      ".  .  . " 1fr
+      ".  .  br" 1fr
+      / 1fr 3fr 1fr;
+  }
+  .rewind-card__image.tl {
+    grid-area: tl;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .rewind-card__image.cr {
+    grid-area: cr;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .rewind-card__image.br {
+    grid-area: br;
+    img {
+      width: 20px;
+      height: 20px;
+      transform: rotate(180deg);
+    }
   }
 }
 

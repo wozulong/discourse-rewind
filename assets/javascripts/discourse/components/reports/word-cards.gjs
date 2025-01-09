@@ -5,9 +5,10 @@ import WordCard from "discourse/plugins/discourse-rewind/discourse/components/re
 export default class WordCards extends Component {
   <template>
     <div class="rewind-report-page -word-cloud">
-      <h2 class="rewind-report-title">Most used words</h2>
+      <h2 class="rewind-report-title">Word Usage</h2>
       <div class="rewind-report-container">
         {{#each-in @report.data as |word count|}}
+          {{! can we pass in an index here? This way inside word-card.gjs instead of random colors & images chosen, we just set them to be static }}
           <WordCard @word={{word}} @count={{count}} />
         {{/each-in}}
       </div>
