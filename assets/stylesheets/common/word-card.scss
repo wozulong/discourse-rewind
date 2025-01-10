@@ -14,8 +14,12 @@
   transform: rotateZ(calc(var(--ambientAmount) * 10deg));
   z-index: 1;
   .rewind-card {
-    box-shadow: 0 0 0 4px var(--mystery-color);
+    box-shadow: 0 0 0 4px rgba(var(--mystery-color-light), 1);
     border: none;
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--primary-200);
+      box-shadow: 0 0 0 4px rgba(var(--mystery-color-light), 0.75);
+    }
   }
   .rewind-card__inner {
     position: relative;
@@ -57,6 +61,24 @@
       ".  .  . " 1fr
       ".  .  br" 1fr
       / 1fr 3fr 1fr;
+    background-image: linear-gradient(
+      45deg,
+      var(--primary-100) 12.5%,
+      var(--primary-200) 12.5%,
+      var(--primary-200) 25%,
+      var(--primary-100) 25%,
+      var(--primary-100) 37.5%,
+      var(--primary-200) 37.5%,
+      var(--primary-200) 50%,
+      var(--primary-100) 50%,
+      var(--primary-100) 62.5%,
+      var(--primary-200) 62.5%,
+      var(--primary-200) 75%,
+      var(--primary-100) 75%,
+      var(--primary-100) 87.5%,
+      var(--primary-200) 87.5%,
+      var(--primary-200)
+    );
   }
   .rewind-card__image.tl {
     grid-area: tl;

@@ -14,11 +14,20 @@ const MYSTERY_EMOJIS = [
 ];
 
 const BACKGROUND_COLORS = [
-  "#FBF5AF",
-  "#28ABE2",
-  "#F0794A",
-  "#E84A51",
-  "#FBF5AF",
+  [
+    "251, 245, 175",
+    "40, 171, 226",
+    "12, 166, 78",
+    "240, 121, 74",
+    "232, 74, 81",
+  ],
+  [
+    "197, 193, 140",
+    "39, 137, 178",
+    "17, 138, 68",
+    "188, 105, 65",
+    "183, 64, 70",
+  ],
 ];
 
 export default class WordCard extends Component {
@@ -29,7 +38,9 @@ export default class WordCard extends Component {
   get mysteryData() {
     return {
       emoji: MYSTERY_EMOJIS[this.args.index],
-      color: `--mystery-color: ${BACKGROUND_COLORS[this.args.index]}`,
+      color: `--mystery-color-light: ${
+        BACKGROUND_COLORS[0][this.args.index]
+      }; --mystery-color-dark: ${BACKGROUND_COLORS[1][this.args.index]};`,
     };
   }
 

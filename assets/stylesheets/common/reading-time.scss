@@ -87,7 +87,10 @@
   padding: 1.5em;
   justify-content: space-around;
   align-items: center;
-  background-color: #11be6d;
+  background-color: rgba(var(--d-green), 1);
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(var(--d-green-dark), 1);
+  }
   --book-color: rgba(var(--primary-rgb), 0.4);
   border-radius: 2px;
 }

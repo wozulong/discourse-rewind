@@ -44,6 +44,9 @@
 
 .background-1 {
   background: url(/plugins/discourse-rewind/images/bg-1.png);
+  @media (prefers-color-scheme: dark) {
+    opacity: 0.15;
+  }
   background-size: contain;
   position: absolute;
   transform: translateY(0px);
