@@ -37,8 +37,9 @@ export default class ActivityCalendar extends Component {
 
   <template>
     <div class="rewind-report-page -activity-calendar">
+      <h2 class="rewind-report-title">Activity Calendar</h2>
+
       <div class="rewind-card">
-        <h2 class="rewind-report-title">Activity Calendar</h2>
         <table class="rewind-calendar">
           <thead>
             <tr>

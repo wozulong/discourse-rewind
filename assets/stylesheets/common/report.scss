@@ -8,12 +8,14 @@
   max-width: 700px;
   margin: 0 auto;
   flex-direction: column;
+  @media (width <= 768px) {
+    padding: 0.75em;
+  }
 }
 
 .rewind-report {
   display: flex;
   flex-direction: column;
-  gap: 2em;
 }
 
 .rewind-report-container {

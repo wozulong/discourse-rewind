@@ -9,10 +9,9 @@
   }
 
   .rewind-reactions-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 25px 50px 1fr;
     gap: 1em;
-    justify-content: flex-start;
-    align-items: center;
     border-bottom: 1px solid var(--primary-low);
     padding: 0.5em 0;
   }
