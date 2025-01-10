@@ -11,7 +11,8 @@ export default class ReadingTime extends Component {
 
   <template>
     <div class="rewind-report-page -reading-time">
-      <div class="rewind-report-container">
+      <h2 class="rewind-report-title">Reading Time</h2>
+      <div class="rewind-card">
         <p class="reading-time__text">You spent
           <code>{{this.readTimeString}}</code>
           reading on our site! That's the time it would take to read through

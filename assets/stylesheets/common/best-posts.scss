@@ -7,6 +7,48 @@
     max-width: 700px;
     text-align: left;
     align-items: unset;
+    position: relative;
+    @include rewind-border;
+    &.rank-1 {
+      --background: #ffe46a;
+      --border-color: #ffd82a;
+    }
+    &.rank-2 {
+      --background: #d6d6d6;
+      --border-color: #c4c4c4;
+    }
+    &.rank-3 {
+      --background: #dca570;
+      --border-color: #cd7f32;
+    }
+  }
+  .best-posts.-rank {
+    z-index: -1;
+    position: absolute;
+    top: 8px;
+    left: -28px;
+    width: 0px;
+    height: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    border-right: 28px solid var(--border-color);
+    border-top: 28px solid transparent;
+    &:nth-child(2) {
+      z-index: -1;
+      position: absolute;
+      top: 8px;
+      left: -28px;
+      width: 0px;
+      height: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 28px solid var(--border-color);
+      border-right: 0;
+      transform: rotate(180deg);
+    }
   }
   .best-posts__post {
     font-weight: normal;
@@ -26,7 +68,7 @@
   .best-posts__replies {
     border: 1px solid var(--primary-200);
     padding: 3px 8px;
-    border-radius: 5px;
+    border-radius: var(--rewind-border-radius);
     display: flex;
     gap: 5px;
     align-items: center;

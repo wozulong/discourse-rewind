@@ -8,15 +8,17 @@ export default class WordCards extends Component {
 
   <template>
     <div class="rewind-report-page -word-cloud">
-      <h2 class="rewind-report-title">Word Usage</h2>
       <div class="rewind-report-container">
-        {{#each this.topWords as |entry index|}}
-          <WordCard
-            @word={{entry.word}}
-            @count={{entry.score}}
-            @index={{index}}
-          />
-        {{/each}}
+        <h2 class="rewind-report-title">Word Usage</h2>
+        <div class="cards-container">
+          {{#each this.topWords as |entry index|}}
+            <WordCard
+              @word={{entry.word}}
+              @count={{entry.score}}
+              @index={{index}}
+            />
+          {{/each}}
+        </div>
       </div>
     </div>
   </template>

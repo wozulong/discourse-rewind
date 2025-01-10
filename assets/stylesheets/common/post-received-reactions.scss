@@ -1,32 +1,48 @@
 .-post-received-reactions {
+  .rewind-report-container {
+    align-items: center;
+    gap: 0.5em;
+  }
   .rewind-card {
-    width: 177px;
-    height: 190px;
     background: var(--secondary);
-
+    flex-direction: row;
+    gap: 0.5em;
+    height: min-content;
+    @include rewind-border;
     .emoji {
-      width: 72px;
-      height: 72px;
+      width: 30px;
+      height: 30px;
     }
   }
-
+  .rewind-card__emoji {
+    font-size: 12px;
+  }
   .scale:nth-child(1) {
-    scale: 0.6;
+    padding: 0.25em;
+    .emoji {
+      width: 20px;
+      height: 20px;
+    }
   }
   .scale:nth-child(2) {
-    scale: 0.7;
-    margin-left: -70px;
+    padding: 0.35em;
+    .emoji {
+      width: 22px;
+      height: 22px;
+    }
   }
   .scale:nth-child(3) {
-    scale: 0.8;
-    margin-left: -50px;
+    padding: 0.5em;
+    .emoji {
+      width: 24px;
+      height: 24px;
+    }
   }
   .scale:nth-child(4) {
-    scale: 0.9;
-    margin-left: -30px;
-  }
-  .scale:nth-child(5) {
-    scale: 1;
-    margin-left: -10px;
+    padding: 0.75em;
+    .emoji {
+      width: 26px;
+      height: 26px;
+    }
   }
 }

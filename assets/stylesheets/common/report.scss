@@ -1,12 +1,12 @@
 .rewind-report-page {
   display: flex;
-  align-items: center;
   justify-content: center;
   padding: 1em;
   box-sizing: border-box;
   font-size: var(--font-up-2);
   width: 100%;
-  gap: 1em;
+  max-width: 700px;
+  margin: 0 auto;
   flex-direction: column;
 }
 

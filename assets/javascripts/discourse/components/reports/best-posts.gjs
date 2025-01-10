@@ -1,16 +1,22 @@
 import Component from "@glimmer/component";
+import { concat } from "@ember/helper";
 import { get } from "@ember/object";
 import { htmlSafe } from "@ember/template";
 import dIcon from "discourse-common/helpers/d-icon";
 
-// eslint-disable-next-line ember/no-empty-glimmer-component-classes
 export default class BestPosts extends Component {
+  rank(idx) {
+    return idx + 1;
+  }
+
   <template>
     <div class="rewind-report-page -best-posts">
       <h2 class="rewind-report-title">Your 3 best posts</h2>
       <div class="rewind-report-container">
-        {{#each @report.data as |post|}}
-          <div class="rewind-card">
+        {{#each @report.data as |post idx|}}
+          <div class={{concat "rewind-card" " rank-" (this.rank idx)}}>
+            <span class="best-posts -rank"></span>
+            <span class="best-posts -rank"></span>
             <div class="best-posts__post">{{htmlSafe (get post "5")}}</div>
             <div class="best-posts__metadata">
               <span class="best-posts__likes">

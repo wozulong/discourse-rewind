@@ -9,13 +9,12 @@ body {
 
 .rewind-report-container {
   perspective: 1000px;
-  gap: 0.5em;
 }
 
 .rewind-card {
   background-color: var(--secondary);
   border: 1px solid var(--primary-300);
-  border-radius: var(--d-border-radius);
+  border-radius: var(--rewind-border-radius);
   background-size: cover;
   display: flex;
   flex-direction: column;
@@ -24,6 +23,8 @@ body {
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 700px;
   &__title {
     font-family: var(--heading-font) !important;
     font-weight: 600;

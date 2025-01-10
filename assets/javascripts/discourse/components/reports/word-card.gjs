@@ -4,6 +4,7 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import emoji from "discourse/helpers/emoji";
+import discourseLater from "discourse-common/lib/later";
 
 const MYSTERY_EMOJIS = [
   "mag", // 🔍
@@ -54,9 +55,19 @@ export default class WordCard extends Component {
     this.cardContainer.classList.toggle("flipped");
   }
 
+  @action
+  handleLeave() {
+    const cardContainer = this.cardContainer;
+    cardContainer.classList.toggle("mouseleave");
+    discourseLater(() => {
+      cardContainer.classList.remove("mouseleave");
+    }, 100);
+  }
+
   <template>
     <div
       {{on "click" (fn this.handleClick)}}
+      {{on "mouseleave" (fn this.handleLeave)}}
       class="rewind-card__wrapper"
       style={{concat this.randomStyle "; " this.mysteryData.color ";"}}
       {{didInsert this.registerCardContainer}}

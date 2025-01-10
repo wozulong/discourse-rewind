@@ -85,8 +85,8 @@ export default class Rewind extends Component {
       tabindex="0"
     >
       <div class="rewind">
+        <Introduction />
         <div class="background-1 parallax-bg"></div>
-        {{! <canvas class="background-2 parallax-bg"></canvas> }}
         {{#if this.loadingRewind}}
           <div class="rewind-loader">
             <div class="spinner small"></div>
@@ -98,15 +98,11 @@ export default class Rewind extends Component {
             @icon={{if this.fullScreen "discourse-compress" "discourse-expand"}}
             @action={{this.toggleFullScreen}}
           />
-
           <div
             class="rewind__scroll-wrapper"
             {{didInsert this.registerScrollWrapper}}
             {{on "scroll" this.handleScroll}}
           >
-            <div class="rewind-report">
-              <Introduction />
-            </div>
 
             {{#each this.rewind as |report|}}
               <div class={{concatClass "rewind-report" report.identifier}}>

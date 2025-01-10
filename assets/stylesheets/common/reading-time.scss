@@ -81,16 +81,13 @@
   width: 50%;
 }
 
-.reading-time .rewind-report-container {
-  max-width: 600px;
+.reading-time .rewind-card {
   gap: 1em;
   padding: 1.5em;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: rgba(var(--d-green), 1);
-  @media (prefers-color-scheme: dark) {
-    background-color: rgba(var(--d-green-dark), 1);
-  }
+  background-color: var(--secondary);
   --book-color: rgba(var(--primary-rgb), 0.4);
-  border-radius: 2px;
+  @include rewind-border;
 }
