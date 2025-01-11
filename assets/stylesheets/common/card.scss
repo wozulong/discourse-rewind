@@ -26,13 +26,14 @@ body {
   width: 100%;
   max-width: 700px;
   &__title {
-    font-family: var(--heading-font) !important;
+    font-family: var(--jersey-heading) !important;
     font-weight: 600;
+    font-size: var(--font-up-3);
     -webkit-font-smoothing: antialiased;
   }
   &__data {
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     -webkit-font-smoothing: antialiased;
   }
 }

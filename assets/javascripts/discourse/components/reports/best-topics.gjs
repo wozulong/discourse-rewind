@@ -19,7 +19,7 @@ export default class BestTopics extends Component {
             >
               <span class="best-topics -rank"></span>
               <span class="best-topics -rank"></span>
-              <h2>{{topic.title}}</h2>
+              <h2 class="best-topics__header">{{topic.title}}</h2>
               <span class="best-topics__excerpt">{{htmlSafe
                   topic.excerpt
                 }}</span>

@@ -17,6 +17,10 @@
   transform: rotateY(-20deg);
 }
 
+p.reading-time__text {
+  font-family: var(--pixel-text);
+}
+
 .reading-time code {
   background-color: rgba(var(--primary-rgb), 0.15);
 }

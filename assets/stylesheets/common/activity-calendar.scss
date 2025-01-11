@@ -1,5 +1,5 @@
 .rewind-report-page.-activity-calendar {
-  margin-bottom: 1em;
+  margin-bottom: 5em;
   .rewind-card {
     @include rewind-border;
   }
@@ -20,7 +20,7 @@
   .rewind-calendar-cell {
     height: 10px;
     width: 10px;
-    border-radius: var(--rewind-border-radius);
+    border-radius: calc(var(--rewind-border-radius) / 2);
     border: 1px solid rgba(var(--primary-rgb), 0.2);
     &.-empty {
       background: var(--primary-low);

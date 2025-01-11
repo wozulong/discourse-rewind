@@ -86,7 +86,7 @@ export default class WordCard extends Component {
         </div>
         <div class="rewind-card -back">
           <span class="rewind-card__title">{{@word}}</span>
-          <span class="rewind-card__data">used {{@count}} times</span>
+          <span class="rewind-card__data">{{@count}}x</span>
         </div>
       </div>
     </div>

@@ -14,14 +14,23 @@
     border: none;
     padding: 0;
   }
+  .best-topics__header {
+    font-family: var(--jersey-heading);
+    margin: 0;
+    font-size: var(--font-up-3);
+    line-height: var(--font-0);
+  }
   .best-topics__topic {
-    padding: 1em;
+    padding: 0.5em;
     position: relative;
     color: var(--primary);
     display: flex;
     flex-direction: column;
     text-align: left;
     max-width: 700px;
+    @media screen and (max-width: 425px) {
+      max-width: 90%;
+    }
     @include rewind-border;
     &.rank-1 {
       --background: #ffe46a;
@@ -66,10 +75,16 @@
     }
   }
   .best-topics__excerpt {
-    font-size: var(--font-down-2);
+    font-family: var(--pixel-text);
+    font-size: var(--font-down-1);
     font-weight: 400;
     color: var(--primary-800);
     text-align: left;
+    @media screen and (max-width: 425px) {
+      max-width: 100%;
+      overflow: hidden;
+      font-size: var(--font-down-2);
+    }
     &:empty {
       display: none;
     }

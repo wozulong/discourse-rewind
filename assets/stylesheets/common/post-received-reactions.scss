@@ -1,7 +1,11 @@
 .-post-received-reactions {
   .rewind-report-container {
     align-items: center;
+    justify-content: space-between;
     gap: 0.5em;
+    @media screen and (width <= 425px) {
+      gap: 0.125em;
+    }
   }
   .rewind-card {
     background: var(--secondary);
@@ -43,6 +47,51 @@
     .emoji {
       width: 26px;
       height: 26px;
+    }
+  }
+  @media screen and (width <= 625px) {
+    .scale {
+      width: min-content;
+    }
+    .scale:nth-child(1) {
+      padding: 0.15em;
+    }
+    .scale:nth-child(2) {
+      padding: 0.25em;
+    }
+    .scale:nth-child(3) {
+      padding: 0.35em;
+    }
+    .scale:nth-child(4) {
+      padding: 0.45em;
+    }
+    .scale:nth-child(5) {
+      padding: 0.65em;
+    }
+  }
+  @media screen and (width <= 425px) {
+    .scale {
+      width: min-content;
+    }
+    .scale:nth-child(1) {
+      padding: 0.15em;
+      display: none;
+    }
+    .scale:nth-child(2) {
+      padding: 0.2em;
+      margin-top: 10px;
+    }
+    .scale:nth-child(3) {
+      padding: 0.2em;
+      margin-top: 20px;
+    }
+    .scale:nth-child(4) {
+      padding: 0.2em;
+    }
+    .scale:nth-child(5) {
+      padding: 0.2em;
+
+      margin-top: 20px;
     }
   }
 }

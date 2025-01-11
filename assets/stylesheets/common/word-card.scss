@@ -7,11 +7,53 @@
 
 .cards-container {
   display: flex;
+  @media (max-width: 525px) {
+    display: grid;
+    grid-template:
+      ".  .  .  .  w  w  .  .  .  . " auto
+      ".  .  .  .  w  w  .  .  .  . " auto
+      ".  .  a  a  w  w  z  z  .  . " auto
+      ".  .  a  a  w  w  z  z  .  . " auto
+      ".  .  a  a  .  .  z  z  .  . " auto
+      ".  .  a  a  .  .  z  z  .  . " auto
+      ".  .  .  d  d  c  c  .  .  . " auto
+      ".  .  .  d  d  c  c  .  .  . " auto
+      ".  .  .  d  d  c  c  .  .  . " auto
+      ".  .  .  d  d  c  c  .  .  . " auto
+      / auto auto auto auto auto auto auto auto;
+    // grid-gap: 0.5em;
+    .rewind-card__wrapper:nth-child(1) {
+      grid-area: w;
+    }
+    .rewind-card__wrapper:nth-child(2) {
+      grid-area: a;
+    }
+    .rewind-card__wrapper:nth-child(3) {
+      grid-area: z;
+    }
+    .rewind-card__wrapper:nth-child(4) {
+      grid-area: d;
+    }
+    .rewind-card__wrapper:nth-child(5) {
+      grid-area: c;
+    }
+  }
 }
 
 .rewind-card__wrapper {
   width: 150px;
   height: 175px;
+  @media screen and (width <= 625px) {
+    width: 115px;
+  }
+  @media screen and (width <= 425px) {
+    width: 100px;
+    height: 125px;
+  }
+  @media screen and (width <= 350px) {
+    width: 80px;
+    height: 125px;
+  }
   perspective: 1000px;
   will-change: transform;
   transform-style: preserve-3d;
@@ -56,6 +98,9 @@
   }
   &:hover .rewind-card__inner {
     box-shadow: 0px 3px 8px 2px rgba(var(--primary-rgb), 0.25);
+    @media (prefers-color-scheme: dark) {
+      box-shadow: 0px 3px 8px 2px rgba(var(--secondary-rgb), 0.9);
+    }
   }
   .rewind-card.-back {
     transform: rotateY(180deg);
@@ -92,6 +137,10 @@
     img {
       width: 20px;
       height: 20px;
+      @media screen and (width <= 425px) {
+        height: 15px;
+        width: 15px;
+      }
     }
   }
   .rewind-card__image.cr {
@@ -99,6 +148,10 @@
     img {
       width: 50px;
       height: 50px;
+      @media screen and (width <= 425px) {
+        height: 30px;
+        width: 30px;
+      }
     }
   }
   .rewind-card__image.br {
@@ -107,6 +160,10 @@
       width: 20px;
       height: 20px;
       transform: rotate(180deg);
+      @media screen and (width <= 425px) {
+        height: 15px;
+        width: 15px;
+      }
     }
   }
 }
