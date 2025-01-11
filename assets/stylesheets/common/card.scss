@@ -30,6 +30,9 @@ body {
     font-weight: 600;
     font-size: var(--font-up-3);
     -webkit-font-smoothing: antialiased;
+    @media screen and (max-width: 525px) {
+      font-size: var(--font-up-2);
+    }
   }
   &__data {
     font-weight: normal;
