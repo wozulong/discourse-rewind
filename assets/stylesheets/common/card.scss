@@ -33,6 +33,9 @@ body {
     @media screen and (max-width: 525px) {
       font-size: var(--font-up-2);
     }
+    @media screen and (max-width: 425px) {
+      font-size: var(--font-up-0);
+    }
   }
   &__data {
     font-weight: normal;
