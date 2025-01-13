@@ -57,7 +57,6 @@ module DiscourseRewind
             .where(posts: { user_id: user.id })
             .where(created_at: date)
             .group(:reaction_value)
-            .limit(5)
             .count,
         )
       end
