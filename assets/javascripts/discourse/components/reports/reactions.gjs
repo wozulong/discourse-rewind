@@ -37,7 +37,6 @@ export default class Reactions extends Component {
           "discourse_rewind.reports.post_received_reactions.title"
         }}</h2>
       <div class="rewind-report-container">
-        {{log this.receivedReactions}}
         {{#each-in this.receivedReactions as |emojiName count|}}
           <div class="rewind-card scale">
             <span class="rewind-card__emoji">{{replaceEmoji
