@@ -84,7 +84,7 @@ module DiscourseRewind
     end
 
     def sort_and_limit(reactions)
-      reactions.sort_by { |_, v| v }.first(5).to_h
+      reactions.sort_by { |_, v| -v }.first(5).reverse.to_h
     end
   end
 end
