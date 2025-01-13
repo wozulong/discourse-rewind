@@ -1,0 +1,16 @@
+.rewind-logo {
+  height: 50px;
+
+  &.-dark {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &.-dark {
+      display: block;
+    }
+    &.-light {
+      display: none;
+    }
+  }
+}

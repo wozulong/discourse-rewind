@@ -20,8 +20,7 @@ module DiscourseRewind
 
     CACHE_DURATION = 5.minutes
 
-    YEAR = 2024
-
+    model :year
     model :user
     model :date
     model :reports
@@ -32,12 +31,27 @@ module DiscourseRewind
       User.find_by_username(guardian.user.username)
     end
 
-    def fetch_date(params:)
-      Date.new(YEAR).all_year
+    def fetch_year
+      current_date = Time.zone.now
+      current_month = current_date.month
+      current_year = current_date.year
+
+      case current_month
+      when 1
+        current_year - 1
+      when 12
+        current_year
+      else
+        false
+      end
     end
 
-    def fetch_reports(date:, user:, guardian:)
-      key = "rewind:#{guardian.user.username}:#{YEAR}"
+    def fetch_date(params:, year:)
+      Date.new(year).all_year
+    end
+
+    def fetch_reports(date:, user:, guardian:, year:)
+      key = "rewind:#{guardian.user.username}:#{year}"
       reports = Discourse.redis.get(key)
 
       if Rails.env.development? || !reports
@@ -48,7 +62,7 @@ module DiscourseRewind
             .map { |report| report.call(date:, user:, guardian:) }
         Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
       else
-        reports = MultiJson.load(reports, symbolize_keys: true)
+        reports = MultiJson.load(reports.compact, symbolize_keys: true)
       end
 
       reports

@@ -62,9 +62,11 @@ module DiscourseRewind
         fbffs
           .flatten
           .inject { |h1, h2| h1.merge(h2) { |_, v1, v2| v1 + v2 } }
-          .sort_by { |_, v| -v }
-          .first
-          .first
+          &.sort_by { |_, v| -v }
+          &.first
+          &.first
+
+      return if !fbff_id
 
       {
         data: {

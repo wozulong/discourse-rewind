@@ -1,0 +1,19 @@
+.rewind-callout {
+  background: var(--primary);
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: var(--d-border-radius);
+
+  &:hover,
+  &:focus {
+    background: var(--primary-low-mid) !important;
+  }
+
+  &__arrow {
+    color: var(--secondary);
+  }
+}

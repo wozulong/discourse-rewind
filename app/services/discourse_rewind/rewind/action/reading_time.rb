@@ -6,12 +6,15 @@ module DiscourseRewind
   class Rewind::Action::ReadingTime < Rewind::Action::BaseReport
     def call
       reading_time = UserVisit.where(user_id: user.id).where(visited_at: date).sum(:time_read)
+      book = best_book_fit(reading_time)
+
+      return if book.nil?
 
       {
         data: {
           reading_time: reading_time,
-          book: best_book_fit(reading_time)[:title],
-          isbn: best_book_fit(reading_time)[:isbn],
+          book: book[:title],
+          isbn: book[:isbn],
         },
         identifier: "reading-time",
       }
@@ -113,6 +116,8 @@ module DiscourseRewind
         books << best_fit.first
         reading_time_rest -= best_fit.last[:reading_time]
       end
+
+      return if books.empty?
 
       book_title =
         books.group_by { |book| book }.transform_values(&:count).max_by { |_, count| count }.first

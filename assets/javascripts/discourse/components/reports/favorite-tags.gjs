@@ -13,7 +13,7 @@ const FavoriteTags = <template>
           <div class="rewind-card">
             <a
               class="favorite-tags__tag"
-              href={{concat "/tag/-/" data.name}}
+              href={{concat "/tag/" data.name}}
             >#{{data.name}}</a>
           </div>
         {{/each}}

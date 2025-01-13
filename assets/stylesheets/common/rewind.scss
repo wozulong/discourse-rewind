@@ -71,26 +71,16 @@
 
 .rewind__introduction {
   padding: 1em 0 1em 1em;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   position: sticky;
   top: 0;
   z-index: 1;
   box-shadow: 1px 0px 0px 1px var(--primary);
-  img {
-    height: 50px;
+
+  .rewind-logo {
     margin-bottom: 5px;
-    &.rewind-logo-dark {
-      display: none;
-    }
-    @media (prefers-color-scheme: dark) {
-      &.rewind-logo-dark {
-        display: block;
-      }
-      &.rewind-logo-light {
-        display: none;
-      }
-    }
   }
+
   p {
     margin: 0 0.5em 0 0;
     text-transform: uppercase;
