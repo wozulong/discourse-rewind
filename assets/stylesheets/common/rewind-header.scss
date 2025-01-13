@@ -10,6 +10,16 @@
   }
 
   @media (prefers-color-scheme: dark) {
+    &.-light {
+      display: block;
+    }
+
+    &.-dark {
+      display: none;
+    }
+  }
+
+  @if is-dark-color-scheme() {
     &.-dark {
       display: none;
     }

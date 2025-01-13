@@ -68,7 +68,7 @@
   .rewind-card {
     box-shadow: 0 0 0 4px rgba(var(--mystery-color-light), 1);
     border: none;
-    @media (prefers-color-scheme: dark) {
+    @if is-dark-color-scheme() {
       background-color: var(--primary-200);
       box-shadow: 0 0 0 4px rgba(var(--mystery-color-dark), 1);
     }
@@ -97,13 +97,13 @@
   }
   &:hover .rewind-card__inner {
     box-shadow: 0px 3px 8px 2px rgba(var(--primary-rgb), 0.25);
-    @media (prefers-color-scheme: dark) {
-      box-shadow: 0px 3px 8px 2px rgba(var(--secondary-rgb), 0.9);
+    @if is-dark-color-scheme() {
+      box-shadow: 0px 3px 8px 2px rgba(var(--primary-rgb), 0.25);
     }
   }
   .rewind-card__inner {
     box-shadow: 0px 0px 6px 2px rgba(var(--primary-rgb), 0.25);
-    @media (prefers-color-scheme: dark) {
+    @if is-dark-color-scheme() {
       box-shadow: 0px 0px 6px 2px rgba(var(--secondary-rgb), 0.9);
     }
   }
