@@ -44,6 +44,7 @@
   background: var(--secondary);
   @media (width <= 768px) {
     border: none;
+    border-radius: 0px;
   }
 }
 

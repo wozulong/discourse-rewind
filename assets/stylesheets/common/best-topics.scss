@@ -28,9 +28,6 @@
     flex-direction: column;
     text-align: left;
     max-width: 700px;
-    @media screen and (max-width: 425px) {
-      max-width: 90%;
-    }
     @include rewind-border;
     &.rank-1 {
       --background: #ffe46a;
