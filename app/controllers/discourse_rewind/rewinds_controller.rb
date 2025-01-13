@@ -4,6 +4,8 @@ module ::DiscourseRewind
   class RewindsController < ::ApplicationController
     requires_plugin PLUGIN_NAME
 
+    requires_login
+
     def show
       DiscourseRewind::Rewind::Fetch.call(service_params) do
         on_model_not_found(:year) { raise Discourse::NotFound }
