@@ -53,7 +53,9 @@
   left: -4px;
   top: -4px;
   content: "";
-  background-image: url(/plugins/discourse-rewind/images/rewind-avatar-2-shimmer.gif);
+  background-image: absolute-image-url(
+    "/plugins/discourse-rewind/images/rewind-avatar-2-shimmer.gif"
+  );
   display: block;
   background-size: cover;
 }
