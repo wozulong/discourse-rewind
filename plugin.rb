@@ -12,7 +12,8 @@ enabled_site_setting :discourse_rewind_enabled
 
 register_svg_icon "repeat"
 
-register_asset "stylesheets/common/index.scss"
+register_asset "stylesheets/common/_index.scss"
+register_asset "stylesheets/mobile/_index.scss", :mobile
 
 module ::DiscourseRewind
   PLUGIN_NAME = "discourse-rewind"
