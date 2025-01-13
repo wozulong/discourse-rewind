@@ -1,2 +1,11 @@
 .-favorite-tags {
+  .rewind-report-container {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+  }
+}
+
+.favorite-tags__tag {
+  font-family: var(--pixel-text);
 }

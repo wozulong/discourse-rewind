@@ -1,2 +1,11 @@
 .-favorite-categories {
+  .rewind-report-container {
+    display: flex;
+    gap: 0.5em;
+    flex-wrap: wrap;
+  }
+}
+
+.favorite-categories__category {
+  font-family: var(--pixel-text);
 }

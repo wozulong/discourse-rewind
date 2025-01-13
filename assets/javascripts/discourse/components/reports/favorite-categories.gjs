@@ -11,7 +11,10 @@ const FavoriteCategories = <template>
       <div class="rewind-report-container">
         {{#each @report.data as |data|}}
           <div class="rewind-card">
-            <a href={{concat "/c/-/" data.category_id}}>{{data.name}}</a>
+            <a
+              class="favorite-categories__category"
+              href={{concat "/c/-/" data.category_id}}
+            >{{data.name}}</a>
           </div>
         {{/each}}
       </div>

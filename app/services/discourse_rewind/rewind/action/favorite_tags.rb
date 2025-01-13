@@ -3,7 +3,20 @@
 # Topics visited grouped by tag
 module DiscourseRewind
   class Rewind::Action::FavoriteTags < Rewind::Action::BaseReport
+    FakeData = {
+      data: [
+        { tag_id: 1, name: "cats" },
+        { tag_id: 2, name: "dogs" },
+        { tag_id: 3, name: "countries" },
+        { tag_id: 4, name: "management" },
+        { tag_id: 5, name: "things" },
+      ],
+      identifier: "favorite-tags",
+    }
+
     def call
+      return FakeData if Rails.env.development?
+
       favorite_tags =
         TopicViewItem
           .joins(:topic)

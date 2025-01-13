@@ -26,6 +26,7 @@ export default class Rewind extends Component {
   @tracked rewind = [];
 
   @tracked fullScreen = true;
+
   @tracked loadingRewind = false;
 
   @action
