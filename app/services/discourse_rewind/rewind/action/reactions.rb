@@ -57,7 +57,6 @@ module DiscourseRewind
             .where(posts: { user_id: user.id })
             .where(created_at: date)
             .group(:reaction_value)
-            .limit(5)
             .count,
         )
       end
@@ -85,7 +84,7 @@ module DiscourseRewind
     end
 
     def sort_and_limit(reactions)
-      reactions.sort_by { |_, v| v }.first(5).to_h
+      reactions.sort_by { |_, v| -v }.first(5).reverse.to_h
     end
   end
 end

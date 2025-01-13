@@ -49,7 +49,9 @@
 }
 
 .background-1 {
-  background: url(/plugins/discourse-rewind/images/blur-bg.png);
+  background: absolute-image-url(
+    "/plugins/discourse-rewind/images/blur-bg.png"
+  );
   @if is-dark-color-scheme() {
     opacity: 0.15;
   }
@@ -68,6 +70,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-bottom: var(--safe-area-inset-bottom);
 }
 
 .rewind__exit-fullscreen-btn {
