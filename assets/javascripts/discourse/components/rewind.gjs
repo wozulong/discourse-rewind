@@ -18,7 +18,7 @@ import FBFF from "discourse/plugins/discourse-rewind/discourse/components/report
 import Introduction from "discourse/plugins/discourse-rewind/discourse/components/reports/introduction";
 import Reactions from "discourse/plugins/discourse-rewind/discourse/components/reports/reactions";
 import ReadingTime from "discourse/plugins/discourse-rewind/discourse/components/reports/reading-time";
-import WordCards from "discourse/plugins/discourse-rewind/discourse/components/reports/word-cards";
+import TopWords from "discourse/plugins/discourse-rewind/discourse/components/reports/top-words";
 
 export default class Rewind extends Component {
   @service siteSettings;
@@ -110,8 +110,8 @@ export default class Rewind extends Component {
                   <FBFF @report={{report}} />
                 {{else if (eq report.identifier "reactions")}}
                   <Reactions @report={{report}} />
-                {{else if (eq report.identifier "word-cloud")}}
-                  <WordCards @report={{report}} />
+                {{else if (eq report.identifier "top-words")}}
+                  <TopWords @report={{report}} />
                 {{else if (eq report.identifier "best-posts")}}
                   <BestPosts @report={{report}} />
                 {{else if (eq report.identifier "best-topics")}}

@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
-import WordCard from "discourse/plugins/discourse-rewind/discourse/components/reports/word-card";
+import { i18n } from "discourse-i18n";
+import WordCard from "discourse/plugins/discourse-rewind/discourse/components/reports/top-words/word-card";
 
 export default class WordCards extends Component {
   get topWords() {
@@ -7,9 +8,11 @@ export default class WordCards extends Component {
   }
 
   <template>
-    <div class="rewind-report-page -word-cloud">
+    <div class="rewind-report-page -top-words">
       <div class="rewind-report-container">
-        <h2 class="rewind-report-title">Word Usage</h2>
+        <h2 class="rewind-report-title">{{i18n
+            "discourse_rewind.reports.top_words.title"
+          }}</h2>
         <div class="cards-container">
           {{#each this.topWords as |entry index|}}
             <WordCard

@@ -1,10 +1,13 @@
-import Component from "@glimmer/component";
 import { concat } from "@ember/helper";
+import { i18n } from "discourse-i18n";
 
-export default class FavoriteTags extends Component {
-  <template>
+const FavoriteTags = <template>
+  {{#if @report.data.length}}
     <div class="rewind-report-page -favorite-tags">
-      <h2 class="rewind-report-title">Your favorite tags</h2>
+      <h2 class="rewind-report-title">{{i18n
+          "discourse_rewind.reports.favorite_categories.title"
+          count=@report.data.length
+        }}</h2>
       <div class="rewind-report-container">
         {{#each @report.data as |data|}}
           <div class="rewind-card">
@@ -13,5 +16,7 @@ export default class FavoriteTags extends Component {
         {{/each}}
       </div>
     </div>
-  </template>
-}
+  {{/if}}
+</template>;
+
+export default FavoriteTags;

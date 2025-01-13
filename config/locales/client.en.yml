@@ -7,3 +7,36 @@ en:
   js:
     discourse_rewind:
       placeholder: Discourse Rewind
+
+      reports:
+        activity_calendar:
+          title: Activity Calendar
+        top_words:
+          title: Word Usage
+        reading_time:
+          title: Reading time
+          book_comparison: "You spent <code>%{readingTitme}</code> reading on our site! That's the time it would take to read through <i>%{bookTitle}</i>"
+        post_used_reactions:
+          title: Most used reactions in topics
+          total_number: "Total number of reactions: %{count}"
+        post_received_reactions:
+          title: Most received reactions in topics
+        fbff:
+          title: Your FBFF (Forum Best Friend Forever)
+        favorite_categories:
+          title:
+            one: Your favorite category
+            other: Your %{count} favorite categories
+        favorite_tags:
+          title:
+            one: Your favorite tag
+            other: Your %{count} favorite tags
+        best_topics:
+          title:
+            one: Your best topic
+            other: Your %{count} best topics
+        best_posts:
+          view_post: View post
+          title:
+            one: Your best post
+            other: Your %{count} best posts

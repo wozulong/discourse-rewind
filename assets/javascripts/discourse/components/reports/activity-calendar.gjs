@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { action } from "@ember/object";
 import concatClass from "discourse/helpers/concat-class";
+import { i18n } from "discourse-i18n";
 
 const ROWS = 7;
 const COLS = 53;
@@ -23,6 +24,11 @@ export default class ActivityCalendar extends Component {
   }
 
   @action
+  getAbbreviatedMonth(monthIndex) {
+    return moment().month(monthIndex).format("MMM");
+  }
+
+  @action
   computeClass(count) {
     if (!count) {
       return "-empty";
@@ -37,24 +43,62 @@ export default class ActivityCalendar extends Component {
 
   <template>
     <div class="rewind-report-page -activity-calendar">
-      <h2 class="rewind-report-title">Activity Calendar</h2>
+      <h2 class="rewind-report-title">{{i18n
+          "discourse_rewind.reports.activity_calendar.title"
+        }}</h2>
 
       <div class="rewind-card">
         <table class="rewind-calendar">
           <thead>
             <tr>
-              <td colspan="5" class="activity-header-cell">Jan</td>
-              <td colspan="4" class="activity-header-cell">Feb</td>
-              <td colspan="4" class="activity-header-cell">Mar</td>
-              <td colspan="5" class="activity-header-cell">Apr</td>
-              <td colspan="4" class="activity-header-cell">May</td>
-              <td colspan="4" class="activity-header-cell">Jun</td>
-              <td colspan="5" class="activity-header-cell">Jul</td>
-              <td colspan="4" class="activity-header-cell">Aug</td>
-              <td colspan="5" class="activity-header-cell">Sep</td>
-              <td colspan="4" class="activity-header-cell">Oct</td>
-              <td colspan="4" class="activity-header-cell">Nov</td>
-              <td colspan="4" class="activity-header-cell">Dec</td>
+              <td
+                colspan="5"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 0}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 1}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 2}}</td>
+              <td
+                colspan="5"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 3}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 4}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 5}}</td>
+              <td
+                colspan="5"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 6}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 7}}</td>
+              <td
+                colspan="5"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 8}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 9}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 10}}</td>
+              <td
+                colspan="4"
+                class="activity-header-cell"
+              >{{this.getAbbreviatedMonth 11}}</td>
             </tr>
           </thead>
           <tbody>

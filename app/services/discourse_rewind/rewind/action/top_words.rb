@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-# User Word Cloud
 module DiscourseRewind
-  class Rewind::Action::WordCloud < Rewind::Action::BaseReport
+  class Rewind::Action::TopWords < Rewind::Action::BaseReport
     FakeData = {
       data: [
         { word: "what", score: 100 },
@@ -12,7 +11,7 @@ module DiscourseRewind
         { word: "this", score: 60 },
         { word: "week", score: 50 },
       ],
-      identifier: "word-cloud",
+      identifier: "top-words",
     }
 
     def call
@@ -81,7 +80,7 @@ module DiscourseRewind
 
       word_score = words.map { { word: _1.original_word, score: _1.ndoc + _1.nentry } }
 
-      { data: word_score, identifier: "word-cloud" }
+      { data: word_score, identifier: "top-words" }
     end
   end
 end

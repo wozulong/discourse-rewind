@@ -1,4 +1,6 @@
 import Component from "@glimmer/component";
+import { htmlSafe } from "@ember/template";
+import { i18n } from "discourse-i18n";
 
 export default class ReadingTime extends Component {
   get readTimeString() {
@@ -10,22 +12,31 @@ export default class ReadingTime extends Component {
   }
 
   <template>
-    <div class="rewind-report-page -reading-time">
-      <h2 class="rewind-report-title">Reading Time</h2>
-      <div class="rewind-card">
-        <p class="reading-time__text">You spent
-          <code>{{this.readTimeString}}</code>
-          reading on our site! That's the time it would take to read through
-          <i>{{@report.data.book}}</i></p>
-        <div class="reading-time__book">
-          <div class="book">
-            <img
-              alt=""
-              src="/plugins/discourse-rewind/images/books/{{@report.data.isbn}}.jpg"
-            />
+    {{#if @report.data}}
+      <div class="rewind-report-page -reading-time">
+        <h2 class="rewind-report-title">{{i18n
+            "discourse_rewind.reports.reading_time.title"
+          }}</h2>
+        <div class="rewind-card">
+          <p class="reading-time__text">
+            {{htmlSafe
+              (i18n
+                "discourse_rewind.reports.reading_time.book_comparison"
+                readingTitme=this.readTimeString
+                bookTitle=@report.data.book
+              )
+            }}
+          </p>
+          <div class="reading-time__book">
+            <div class="book">
+              <img
+                alt=""
+                src="/plugins/discourse-rewind/images/books/{{@report.data.isbn}}.jpg"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    {{/if}}
   </template>
 }
