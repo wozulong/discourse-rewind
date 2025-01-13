@@ -1,8 +1,8 @@
 import Component from "@glimmer/component";
-import { concat, fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
+import { htmlSafe } from "@ember/template";
 import emoji from "discourse/helpers/emoji";
 import discourseLater from "discourse-common/lib/later";
 
@@ -45,6 +45,10 @@ export default class WordCard extends Component {
     };
   }
 
+  get cardStyle() {
+    return htmlSafe(`${this.randomStyle}; ${this.mysteryData.color};`);
+  }
+
   @action
   registerCardContainer(element) {
     this.cardContainer = element;
@@ -66,11 +70,12 @@ export default class WordCard extends Component {
 
   <template>
     <div
-      {{on "click" (fn this.handleClick)}}
-      {{on "mouseleave" (fn this.handleLeave)}}
+      {{on "click" this.handleClick}}
+      {{on "mouseleave" this.handleLeave}}
       class="rewind-card__wrapper"
-      style={{concat this.randomStyle "; " this.mysteryData.color ";"}}
+      style={{this.cardStyle}}
       {{didInsert this.registerCardContainer}}
+      role="button"
     >
       <div class="rewind-card__inner">
         <div class="rewind-card -front">
