@@ -15,7 +15,7 @@ import BestTopics from "discourse/plugins/discourse-rewind/discourse/components/
 import FavoriteCategories from "discourse/plugins/discourse-rewind/discourse/components/reports/favorite-categories";
 import FavoriteTags from "discourse/plugins/discourse-rewind/discourse/components/reports/favorite-tags";
 import FBFF from "discourse/plugins/discourse-rewind/discourse/components/reports/fbff";
-import Introduction from "discourse/plugins/discourse-rewind/discourse/components/reports/introduction";
+import RewindHeader from "discourse/plugins/discourse-rewind/discourse/components/reports/header";
 import Reactions from "discourse/plugins/discourse-rewind/discourse/components/reports/reactions";
 import ReadingTime from "discourse/plugins/discourse-rewind/discourse/components/reports/reading-time";
 import TopWords from "discourse/plugins/discourse-rewind/discourse/components/reports/top-words";
@@ -86,7 +86,7 @@ export default class Rewind extends Component {
       tabindex="0"
     >
       <div class="rewind">
-        <Introduction />
+        <RewindHeader />
         <div class="background-1 parallax-bg"></div>
         {{#if this.loadingRewind}}
           <div class="rewind-loader">

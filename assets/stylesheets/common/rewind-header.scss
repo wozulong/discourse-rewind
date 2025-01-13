@@ -1,0 +1,38 @@
+.rewind-logo {
+  height: 40px;
+
+  &.-light {
+    display: none;
+  }
+
+  &.-dark {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &.-dark {
+      display: none;
+    }
+    &.-light {
+      display: block;
+    }
+  }
+}
+
+.rewind__header {
+  padding: 1em 0 1em 1em;
+  background-color: var(--primary);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-shadow: 1px 0px 0px 1px var(--primary);
+  .rewind-logo {
+    margin-bottom: 5px;
+  }
+
+  p {
+    margin: 0 0.5em 0 0;
+    text-transform: uppercase;
+    font-size: var(--font-up-1);
+  }
+}

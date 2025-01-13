@@ -1,5 +1,5 @@
-const Introduction = <template>
-  <div class="rewind__introduction">
+const RewindHeader = <template>
+  <div class="rewind__header">
     <img
       class="rewind-logo -light"
       src="/plugins/discourse-rewind/images/discourse-rewind-logo.png"
@@ -11,4 +11,4 @@ const Introduction = <template>
   </div>
 </template>;
 
-export default Introduction;
+export default RewindHeader;
