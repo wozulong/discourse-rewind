@@ -70,6 +70,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  padding-bottom: var(--safe-area-inset-bottom);
 }
 
 .rewind__exit-fullscreen-btn {
