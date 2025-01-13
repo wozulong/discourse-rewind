@@ -7,7 +7,7 @@ en:
   js:
     discourse_rewind:
       placeholder: Discourse Rewind
-
+      title: Rewind
       reports:
         activity_calendar:
           title: Activity Calendar
