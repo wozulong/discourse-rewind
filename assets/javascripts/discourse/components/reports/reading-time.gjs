@@ -8,7 +8,13 @@ export default class ReadingTime extends Component {
     let leftOverMinutes = totalMinutes % 60;
     let totalHours = (totalMinutes - leftOverMinutes) / 60;
 
-    return `${totalHours}h ${leftOverMinutes}m`;
+    if (leftOverMinutes >= 35) {
+      totalHours += 1;
+      leftOverMinutes = 0;
+      return `${totalHours}h`;
+    } else {
+      return `${totalHours}h ${leftOverMinutes}m`;
+    }
   }
 
   <template>
@@ -34,6 +40,11 @@ export default class ReadingTime extends Component {
                 src="/plugins/discourse-rewind/images/books/{{@report.data.isbn}}.jpg"
               />
             </div>
+            {{#if @report.data.series}}
+              <div class="book-series one"></div>
+              <div class="book-series two"></div>
+              <div class="book-series three"></div>
+            {{/if}}
           </div>
         </div>
       </div>
