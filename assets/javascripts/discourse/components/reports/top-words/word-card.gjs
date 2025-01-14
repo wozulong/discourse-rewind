@@ -3,6 +3,7 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import { htmlSafe } from "@ember/template";
+import concatClass from "discourse/helpers/concat-class";
 import emoji from "discourse/helpers/emoji";
 import discourseLater from "discourse-common/lib/later";
 
@@ -45,6 +46,10 @@ export default class WordCard extends Component {
     };
   }
 
+  get longWord() {
+    return this.args.word.length >= 7;
+  }
+
   get cardStyle() {
     return htmlSafe(`${this.randomStyle}; ${this.mysteryData.color};`);
   }
@@ -72,7 +77,10 @@ export default class WordCard extends Component {
     <div
       {{on "click" this.handleClick}}
       {{on "mouseleave" this.handleLeave}}
-      class="rewind-card__wrapper"
+      class={{concatClass
+        "rewind-card__wrapper"
+        (if this.longWord "-long-word")
+      }}
       style={{this.cardStyle}}
       {{didInsert this.registerCardContainer}}
       role="button"

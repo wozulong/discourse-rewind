@@ -137,6 +137,16 @@
         0 0 / 6px 6px,
       var(--secondary-low);
   }
+  &.-long-word .rewind-card__title {
+    font-size: var(--font-0);
+  }
+  &.-long-word .rewind-card {
+    padding: 2px;
+  }
+  .rewind-card__title {
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
   .rewind-card__image {
     image-rendering: pixelated;
   }
