@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.5em;
-    @media screen and (width <= 425px) {
+    @media screen and (width <= 475px) {
       gap: 0.125em;
     }
   }
@@ -87,7 +87,7 @@
       padding: 0.65em;
     }
   }
-  @media screen and (width <= 425px) {
+  @media screen and (width <= 475px) {
     .scale {
       width: min-content;
     }

@@ -8,7 +8,7 @@
 .book {
   width: 150px;
   height: 200px;
-  @media screen and (width <= 425px) {
+  @media screen and (width <= 475px) {
     width: 100px;
     height: 133px;
   }
@@ -31,7 +31,7 @@ p.reading-time__text {
   left: 0;
   width: 150px;
   height: 200px;
-  @media screen and (width <= 425px) {
+  @media screen and (width <= 475px) {
     width: 100px;
     height: 133px;
   }
@@ -49,7 +49,7 @@ p.reading-time__text {
   top: 4px;
   width: 33px;
   height: 192px;
-  @media screen and (width <= 425px) {
+  @media screen and (width <= 475px) {
     left: -43px;
     width: 22px;
     height: 125px;
@@ -91,7 +91,7 @@ p.reading-time__text {
   transform: translateZ(-17.5px);
   background-color: var(--book-color);
   border-radius: 0 5px 5px 0;
-  @media screen and (width <= 425px) {
+  @media screen and (width <= 475px) {
     width: 100px;
     height: 133px;
   }
@@ -100,7 +100,7 @@ p.reading-time__text {
 .reading-time__text {
   font-weight: normal;
   width: 50%;
-  @media screen and (width <= 425px) {
+  @media screen and (width <= 475px) {
     font-size: var(--font-down-2);
   }
 }
@@ -108,7 +108,7 @@ p.reading-time__text {
 .reading-time .rewind-card {
   gap: 1em;
   padding: 1.5em;
-  @media screen and (width <= 425px) {
+  @media screen and (width <= 475px) {
     padding: 0.75em;
   }
   flex-direction: row;
