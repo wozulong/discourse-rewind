@@ -102,6 +102,34 @@ module DiscourseRewind
           reading_time: 12_600,
           isbn: "978-0345391803",
         },
+        "Complete works of Shakespeare" => {
+          reading_time: 180_000,
+          isbn: "978-1853268953",
+        },
+        "Game of Thrones books" => {
+          reading_time: 360_000,
+          isbn: "978-0007477159",
+        },
+        "Malazan Book of the Fallen" => {
+          reading_time: 720_000,
+          isbn: "978-0765348821",
+        },
+        "Terry Pratchett’s Discworld series" => {
+          reading_time: 1_440_000,
+          isbn: "978-9123684458",
+        },
+        "The Wandering Inn web series" => {
+          reading_time: 2_160_000,
+          isbn: "thewanderinginn.com",
+        },
+        "Combined Cosmere works + Wheel of Time" => {
+          reading_time: 2_880_000,
+          isbn: "978-0812511819",
+        },
+        "Star Trek novels" => {
+          reading_time: 3_600_000,
+          isbn: "978-1852860691",
+        },
       }.symbolize_keys
     end
 
