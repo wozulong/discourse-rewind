@@ -38,82 +38,102 @@ module DiscourseRewind
         "The Hunger Games" => {
           reading_time: 19_740,
           isbn: "978-0439023481",
+          series: false,
         },
         "The Metamorphosis" => {
           reading_time: 3120,
           isbn: "978-0553213690",
+          series: false,
         },
         "To Kill a Mockingbird" => {
           reading_time: 22_800,
           isbn: "978-0061120084",
+          series: false,
         },
         "Pride and Prejudice" => {
           reading_time: 25_200,
           isbn: "978-1503290563",
+          series: false,
         },
         "1984" => {
           reading_time: 16_800,
           isbn: "978-0451524935",
+          series: false,
         },
         "The Lord of the Rings" => {
           reading_time: 108_000,
           isbn: "978-0544003415",
+          series: true,
         },
         "Harry Potter and the Sorcerer's Stone" => {
           reading_time: 24_600,
           isbn: "978-0590353427",
+          series: true,
         },
         "The Great Gatsby" => {
           reading_time: 12_600,
           isbn: "978-0743273565",
+          series: false,
         },
         "The Little Prince" => {
           reading_time: 5400,
           isbn: "978-0156012195",
+          series: false,
         },
         "Animal Farm" => {
           reading_time: 7200,
           isbn: "978-0451526342",
+          series: false,
         },
         "The Catcher in the Rye" => {
           reading_time: 18_000,
           isbn: "978-0316769488",
+          series: false,
         },
         "Jane Eyre" => {
           reading_time: 34_200,
           isbn: "978-0141441146",
+          series: false,
         },
         "Fahrenheit 451" => {
           reading_time: 15_000,
           isbn: "978-1451673319",
+          series: false,
         },
         "The Hobbit" => {
           reading_time: 27_000,
           isbn: "978-0547928227",
+          series: false,
         },
         "The Da Vinci Code" => {
           reading_time: 37_800,
           isbn: "978-0307474278",
+          series: false,
         },
         "Little Women" => {
           reading_time: 30_000,
           isbn: "978-0147514011",
+          series: false,
         },
         "One Hundred Years of Solitude" => {
           reading_time: 46_800,
           isbn: "978-0060883287",
+          series: false,
         },
         "And Then There Were None" => {
           reading_time: 16_200,
           isbn: "978-0062073488",
+          series: false,
         },
         "The Alchemist" => {
           reading_time: 10_800,
           isbn: "978-0061122415",
+          series: false,
         },
         "The Hitchhiker's Guide to the Galaxy" => {
           reading_time: 12_600,
           isbn: "978-0345391803",
+          series: false,
         },
         "The Complete works of Shakespeare" => {
           reading_time: 180_000,
@@ -170,7 +190,11 @@ module DiscourseRewind
       book_title =
         books.group_by { |book| book }.transform_values(&:count).max_by { |_, count| count }.first
 
-      { title: book_title, isbn: popular_books[book_title][:isbn] }
+      {
+        title: book_title,
+        isbn: popular_books[book_title][:isbn],
+        series: popular_books[book_title][:series],
+      }
     end
   end
 end
