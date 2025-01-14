@@ -3,7 +3,19 @@
 # Topics visited grouped by category
 module DiscourseRewind
   class Rewind::Action::FavoriteCategories < Rewind::Action::BaseReport
+    FakeData = {
+      data: [
+        { category_id: 1, name: "cats" },
+        { category_id: 2, name: "dogs" },
+        { category_id: 3, name: "countries" },
+        { category_id: 4, name: "management" },
+        { category_id: 5, name: "things" }
+      ],
+      identifier: "favorite-categories"
+    }
     def call
+      return FakeData if Rails.env.development?
+
       favorite_categories =
         TopicViewItem
           .joins(:topic)
