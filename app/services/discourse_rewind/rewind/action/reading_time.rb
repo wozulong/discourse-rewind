@@ -170,7 +170,7 @@ module DiscourseRewind
       book_title =
         books.group_by { |book| book }.transform_values(&:count).max_by { |_, count| count }.first
 
-      { title: book_title, isbn: popular_books[book_title][:isbn] }
+      { title: book_title, isbn: popular_books[book_title][:isbn], series: popular_books[book_title][:series] }
     end
   end
 end
