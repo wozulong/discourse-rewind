@@ -106,7 +106,7 @@ module DiscourseRewind
           reading_time: 180_000,
           isbn: "978-1853268953",
         },
-        "Game of Thrones books" => {
+        "Game of Thrones Series" => {
           reading_time: 360_000,
           isbn: "978-0007477159",
         },
@@ -120,7 +120,7 @@ module DiscourseRewind
         },
         "The Wandering Inn web series" => {
           reading_time: 2_160_000,
-          isbn: "thewanderinginn.com",
+          isbn: "the-wandering-inn",
         },
         "Combined Cosmere works + Wheel of Time" => {
           reading_time: 2_880_000,
