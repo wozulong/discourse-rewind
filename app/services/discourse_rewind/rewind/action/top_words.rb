@@ -7,7 +7,7 @@ module DiscourseRewind
         { word: "what", score: 100 },
         { word: "have", score: 90 },
         { word: "you", score: 80 },
-        { word: "achieved", score: 70 },
+        { word: "overachieved", score: 70 },
         { word: "this", score: 60 },
         { word: "week", score: 50 },
       ],
