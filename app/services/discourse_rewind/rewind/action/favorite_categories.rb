@@ -9,9 +9,9 @@ module DiscourseRewind
         { category_id: 2, name: "dogs" },
         { category_id: 3, name: "countries" },
         { category_id: 4, name: "management" },
-        { category_id: 5, name: "things" }
+        { category_id: 5, name: "things" },
       ],
-      identifier: "favorite-categories"
+      identifier: "favorite-categories",
     }
     def call
       return FakeData if Rails.env.development?
