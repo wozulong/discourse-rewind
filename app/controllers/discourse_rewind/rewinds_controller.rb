@@ -7,7 +7,7 @@ module ::DiscourseRewind
     requires_login
 
     def show
-      DiscourseRewind::Rewind::Fetch.call(service_params) do
+      DiscourseRewind::FetchReports.call(service_params) do
         on_model_not_found(:year) { raise Discourse::NotFound }
         on_model_not_found(:user) { raise Discourse::NotFound }
         on_success do |reports:|

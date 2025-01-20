@@ -8,7 +8,7 @@ module DiscourseRewind
   #    guardian: guardian
   #  )
   #
-  class Rewind::Fetch
+  class FetchReports
     include Service::Base
 
     # @!method self.call(guardian:, params:)
@@ -18,7 +18,20 @@ module DiscourseRewind
     #   @option params [Integer] :username of the rewind
     #   @return [Service::Base::Context]
 
-    CACHE_DURATION = 5.minutes
+    CACHE_DURATION = Rails.env.development? ? 10.seconds : 5.minutes
+
+    # order matters
+    REPORTS = [
+      Action::TopWords,
+      Action::ReadingTime,
+      Action::Reactions,
+      Action::Fbff,
+      Action::FavoriteTags,
+      Action::FavoriteCategories,
+      Action::BestTopics,
+      Action::BestPosts,
+      Action::ActivityCalendar,
+    ]
 
     model :year
     model :user
@@ -51,19 +64,15 @@ module DiscourseRewind
     end
 
     def fetch_reports(date:, user:, guardian:, year:)
-      # key = "rewind:#{guardian.user.username}:#{year}"
-      # reports = Discourse.redis.get(key)
+      key = "rewind:#{guardian.user.username}:#{year}"
+      reports = Discourse.redis.get(key)
 
-      # if Rails.env.development? || !reports
-      reports =
-        ::DiscourseRewind::Rewind::Action::BaseReport
-          .descendants
-          .filter { _1.enabled? }
-          .map { |report| report.call(date:, user:, guardian:) }
-      #   Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
-      # else
-      #   reports = MultiJson.load(reports.compact, symbolize_keys: true)
-      # end
+      if !reports
+        reports = REPORTS.map { |report| report.call(date:, user:, guardian:) }
+        Discourse.redis.setex(key, CACHE_DURATION, MultiJson.dump(reports))
+      else
+        reports = MultiJson.load(reports, symbolize_keys: true)
+      end
 
       reports
     end

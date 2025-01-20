@@ -1,23 +1,24 @@
 # frozen_string_literal: true
 
 module DiscourseRewind
-  class Rewind::Action::TopWords < Rewind::Action::BaseReport
-    FakeData = {
-      data: [
-        { word: "what", score: 100 },
-        { word: "have", score: 90 },
-        { word: "you", score: 80 },
-        { word: "overachieved", score: 70 },
-        { word: "this", score: 60 },
-        { word: "week", score: 50 },
-      ],
-      identifier: "top-words",
-    }
+  module Action
+    class TopWords < BaseReport
+      FakeData = {
+        data: [
+          { word: "what", score: 100 },
+          { word: "have", score: 90 },
+          { word: "you", score: 80 },
+          { word: "overachieved", score: 70 },
+          { word: "this", score: 60 },
+          { word: "week", score: 50 },
+        ],
+        identifier: "top-words",
+      }
 
-    def call
-      return FakeData if Rails.env.development?
+      def call
+        return FakeData if Rails.env.development?
 
-      words = DB.query(<<~SQL, user_id: user.id, date_start: date.first, date_end: date.last)
+        words = DB.query(<<~SQL, user_id: user.id, date_start: date.first, date_end: date.last)
         WITH popular_words AS (
           SELECT
             *
@@ -78,9 +79,10 @@ module DiscourseRewind
         LIMIT 100
       SQL
 
-      word_score = words.map { { word: _1.original_word, score: _1.ndoc + _1.nentry } }
+        word_score = words.map { { word: _1.original_word, score: _1.ndoc + _1.nentry } }
 
-      { data: word_score, identifier: "top-words" }
+        { data: word_score, identifier: "top-words" }
+      end
     end
   end
 end
