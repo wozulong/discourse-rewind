@@ -9,6 +9,7 @@
       grid-template-areas: "gif gif gif" "friend nothing you";
     }
   }
+
   --border-size: 6px;
   @media screen and (width <= 768px) {
     --border-size: 4px;
@@ -16,6 +17,7 @@
   @media screen and (width <= 475px) {
     --border-size: 3px;
   }
+
   .fbff-gif-container {
     position: relative;
     width: 90%;
@@ -27,21 +29,25 @@
       grid-area: gif;
     }
   }
+
   .fbff-gif {
     width: 100%;
     border-radius: var(--rewind-border-radius);
   }
+
   .fbff-avatar-container {
     z-index: 10;
     @media screen and (width <= 625px) {
       &:first-of-type {
         grid-area: friend;
       }
+
       &:last-of-type {
         grid-area: you;
       }
     }
   }
+
   .fbff-avatar-container img.avatar {
     align-self: center;
     justify-self: center;
@@ -56,11 +62,13 @@
       height: 25px;
     }
   }
+
   .fbff-avatar-container {
     display: grid;
     grid-template-rows: 1fr min-content;
     flex-direction: column;
   }
+
   .fbff-avatar-name {
     margin: 0;
     align-self: center;
@@ -68,7 +76,7 @@
     margin-top: auto;
     height: min-content;
     font-size: var(--font-down-1);
-    font-family: Pixelify Sans;
+    font-family: "Pixelify Sans";
     @media screen and (width <= 475px) {
       font-size: var(--font-down-3);
     }
