@@ -1,12 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Jersey+20&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
-@import url("https://use.typekit.net/ony6yef.css");
+@font-face {
+  font-family: "receipt-narrow";
+  src: absolute-image-url(
+      "/plugins/discourse-rewind/fonts/receipt-narrow.woff2"
+    )
+    format("woff2");
+  font-display: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Jersey 20";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: absolute-image-url(
+      "/plugins/discourse-rewind/fonts/jersey-20-v2-latin-regular.woff2"
+    )
+    format("woff2");
+}
 
 .rewind {
-  --heading-font: "Rubik", Helvetica, Arial, sans-serif;
-  --regular-font: "Open Sans", Helvetica, Arial, sans-serif;
   --jersey-heading: "Jersey 20", Helvetica, Arial, sans-serif;
   --pixel-text: "receipt-narrow", sans-serif;
   h1,
