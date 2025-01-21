@@ -25,6 +25,7 @@ module DiscourseRewind
             .joins("INNER JOIN tags ON tags.id = topic_tags.tag_id")
             .where(user: user)
             .where(viewed_at: date)
+            .where(tags: { id: Tag.visible(user.guardian).pluck(:id) })
             .group("tags.id, tags.name")
             .order("COUNT(DISTINCT topic_views.topic_id) DESC")
             .limit(5)
