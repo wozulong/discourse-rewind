@@ -1,0 +1,42 @@
+zh_CN:
+  admin_js:
+    admin:
+      site_settings:
+        categories:
+          discourse_rewind: "Discourse 回顾"
+  js:
+    discourse_rewind:
+      placeholder: "Discourse 回顾"
+      title: "回顾"
+      reports:
+        activity_calendar:
+          title: "活动日历"
+        top_words:
+          title: "高频用词"
+        reading_time:
+          title: "阅读时间"
+          book_comparison: "你在我们的社区里花费了 <code>%{readingTitme}</code> 的阅读时间！这相当于读完《%{bookTitle}》所需的时间。"
+        post_used_reactions:
+          title: "主题中最常用的回应"
+          total_number: "回应总数：%{count}"
+        post_received_reactions:
+          title: "主题中最多收到的回应"
+        fbff:
+          title: "你的社区挚友"
+        favorite_categories:
+          title:
+            one: "你最爱的版块"
+            other: "你最爱的 %{count} 个版块"
+        favorite_tags:
+          title:
+            one: "你最爱的标签"
+            other: "你最爱的 %{count} 个标签"
+        best_topics:
+          title:
+            one: "你的最佳主题"
+            other: "你的 %{count} 个最佳主题"
+        best_posts:
+          view_post: "查看帖子"
+          title:
+            one: "你的最佳帖子"
+            other: "你的 %{count} 个最佳帖子"
