@@ -26,7 +26,7 @@ module DiscourseRewind
       Action::ReadingTime,
       Action::Reactions,
       Action::Fbff,
-      # Action::FavoriteTags,
+      Action::FavoriteTags,
       Action::FavoriteCategories,
       Action::BestTopics,
       Action::BestPosts,
