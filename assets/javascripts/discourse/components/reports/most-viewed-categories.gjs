@@ -13,7 +13,7 @@ const MostViewedCategories = <template>
           <a class="folder-wrapper" href={{concat "/c/-/" data.category_id}}>
             <span class="folder-tab"></span>
             <div class="rewind-card">
-              <p class="most-viewed-categories__category">{{data.name}}</p>
+              <p class="most-viewed-categories__category">#{{data.name}}</p>
             </div>
             <span class="folder-bg"></span>
           </a>
