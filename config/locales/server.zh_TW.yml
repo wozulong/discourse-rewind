@@ -1,0 +1,6 @@
+zh_TW:
+  site_settings:
+    discourse_rewind_enabled: "啟用 Discourse 回顧，為社區成員生成一份有趣的年度活動總結。"
+  discourse_rewind:
+    report_failed: "生成 Discourse 回顧報告失敗。"
+    invalid_year: "回顧只能在 1 月或 12 月生成。"
