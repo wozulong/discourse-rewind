@@ -8,14 +8,22 @@ zh_TW:
     discourse_rewind:
       placeholder: "Discourse 回顧"
       title: "回顧"
+      year: "2025"
+      loading: "正在生成樣條曲線..."
       reports:
         activity_calendar:
           title: "活動日曆"
+          cell_title:
+            visited_no_posts: "你在 %{date} 造訪並潛水了，但沒有發佈貼文。"
+            visited_with_posts:
+              one: "你在 %{date} 發佈了 %{count} 則貼文。"
+              other: "你在 %{date} 發佈了 %{count} 則貼文。"
+            no_activity: "你在 %{date} 沒有上線。"
         top_words:
           title: "高頻用詞"
         reading_time:
           title: "閱讀時間"
-          book_comparison: "你在我們的社區裡花費了 <code>%{readingTitme}</code> 的閱讀時間！這相當於讀完《%{bookTitle}》所需的時間。"
+          book_comparison: "你在我們的社區裡花費了 <code>%{readingTime}</code> 的閱讀時間！這相當於讀完《%{bookTitle}》所需的時間。"
         post_used_reactions:
           title: "主題中最常用的回應"
           total_number: "回應總數：%{count}"
@@ -23,14 +31,14 @@ zh_TW:
           title: "主題中最多收到的回應"
         fbff:
           title: "你的社區摯友"
-        favorite_categories:
+        most_viewed_categories:
           title:
-            one: "你最愛的版塊"
-            other: "你最愛的 %{count} 個版塊"
-        favorite_tags:
+            one: "你瀏覽最多的版塊"
+            other: "你瀏覽最多的 %{count} 個版塊"
+        most_viewed_tags:
           title:
-            one: "你最愛的標籤"
-            other: "你最愛的 %{count} 個標籤"
+            one: "你瀏覽最多的標籤"
+            other: "你瀏覽最多的 %{count} 個標籤"
         best_topics:
           title:
             one: "你的最佳主題"
