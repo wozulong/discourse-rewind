@@ -23,7 +23,7 @@ en:
           title: Word Usage
         reading_time:
           title: Reading time
-          book_comparison: "You spent <code>%{readingTitme}</code> reading on our site! That's the time it would take to read through <i>%{bookTitle}</i>"
+          book_comparison: "You spent <code>%{readingTime}</code> reading on our site! That's the time it would take to read through <i>%{bookTitle}</i>"
         post_used_reactions:
           title: Most used reactions in topics
           total_number: "Total number of reactions: %{count}"
