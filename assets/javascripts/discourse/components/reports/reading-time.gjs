@@ -28,7 +28,7 @@ export default class ReadingTime extends Component {
             {{htmlSafe
               (i18n
                 "discourse_rewind.reports.reading_time.book_comparison"
-                readingTitme=this.readTimeString
+                readingTime=this.readTimeString
                 bookTitle=@report.data.book
               )
             }}
