@@ -7,18 +7,25 @@ import DButton from "discourse/components/d-button";
 import concatClass from "discourse/helpers/concat-class";
 import { ajax } from "discourse/lib/ajax";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import { eq } from "discourse/truth-helpers";
 import { i18n } from "discourse-i18n";
 import ActivityCalendar from "discourse/plugins/discourse-rewind/discourse/components/reports/activity-calendar";
+import AiUsage from "discourse/plugins/discourse-rewind/discourse/components/reports/ai-usage";
+import Assignments from "discourse/plugins/discourse-rewind/discourse/components/reports/assignments";
 import BestPosts from "discourse/plugins/discourse-rewind/discourse/components/reports/best-posts";
 import BestTopics from "discourse/plugins/discourse-rewind/discourse/components/reports/best-topics";
+import ChatUsage from "discourse/plugins/discourse-rewind/discourse/components/reports/chat-usage";
+// import FavoriteGifs from "discourse/plugins/discourse-rewind/discourse/components/reports/favorite-gifs";
 import FBFF from "discourse/plugins/discourse-rewind/discourse/components/reports/fbff";
 import RewindHeader from "discourse/plugins/discourse-rewind/discourse/components/reports/header";
+import Invites from "discourse/plugins/discourse-rewind/discourse/components/reports/invites";
 import MostViewedCategories from "discourse/plugins/discourse-rewind/discourse/components/reports/most-viewed-categories";
 import MostViewedTags from "discourse/plugins/discourse-rewind/discourse/components/reports/most-viewed-tags";
+import NewUserInteractions from "discourse/plugins/discourse-rewind/discourse/components/reports/new-user-interactions";
 import Reactions from "discourse/plugins/discourse-rewind/discourse/components/reports/reactions";
 import ReadingTime from "discourse/plugins/discourse-rewind/discourse/components/reports/reading-time";
+import TimeOfDayActivity from "discourse/plugins/discourse-rewind/discourse/components/reports/time-of-day-activity";
 import TopWords from "discourse/plugins/discourse-rewind/discourse/components/reports/top-words";
+import WritingAnalysis from "discourse/plugins/discourse-rewind/discourse/components/reports/writing-analysis";
 
 export default class Rewind extends Component {
   @tracked rewind = [];
@@ -66,11 +73,52 @@ export default class Rewind extends Component {
     this.rewindContainer = element;
   }
 
+  getReportComponent(identifier) {
+    switch (identifier) {
+      case "fbff":
+        return FBFF;
+      case "reactions":
+        return Reactions;
+      case "top-words":
+        return TopWords;
+      case "best-posts":
+        return BestPosts;
+      case "best-topics":
+        return BestTopics;
+      case "activity-calendar":
+        return ActivityCalendar;
+      case "most-viewed-tags":
+        return MostViewedTags;
+      case "reading-time":
+        return ReadingTime;
+      case "most-viewed-categories":
+        return MostViewedCategories;
+      case "ai-usage":
+        return AiUsage;
+      case "assignments":
+        return Assignments;
+      case "chat-usage":
+        return ChatUsage;
+      // case "favorite-gifs":
+      //   return FavoriteGifs;
+      case "invites":
+        return Invites;
+      case "new-user-interactions":
+        return NewUserInteractions;
+      case "time-of-day-activity":
+        return TimeOfDayActivity;
+      case "writing-analysis":
+        return WritingAnalysis;
+      default:
+        return null;
+    }
+  }
+
   <template>
     <div
       class={{concatClass
         "rewind-container"
-        (if this.fullScreen "-fullscreen")
+        (if this.fullScreen "--fullscreen")
       }}
       {{didInsert this.loadRewind}}
       {{on "keydown" this.handleEscape}}
@@ -99,27 +147,16 @@ export default class Rewind extends Component {
           >
 
             {{#each this.rewind as |report|}}
-              <div class={{concatClass "rewind-report" report.identifier}}>
-                {{#if (eq report.identifier "fbff")}}
-                  <FBFF @report={{report}} />
-                {{else if (eq report.identifier "reactions")}}
-                  <Reactions @report={{report}} />
-                {{else if (eq report.identifier "top-words")}}
-                  <TopWords @report={{report}} />
-                {{else if (eq report.identifier "best-posts")}}
-                  <BestPosts @report={{report}} />
-                {{else if (eq report.identifier "best-topics")}}
-                  <BestTopics @report={{report}} />
-                {{else if (eq report.identifier "activity-calendar")}}
-                  <ActivityCalendar @report={{report}} />
-                {{else if (eq report.identifier "most-viewed-tags")}}
-                  <MostViewedTags @report={{report}} />
-                {{else if (eq report.identifier "reading-time")}}
-                  <ReadingTime @report={{report}} />
-                {{else if (eq report.identifier "most-viewed-categories")}}
-                  <MostViewedCategories @report={{report}} />
+              {{#let
+                (this.getReportComponent report.identifier)
+                as |ReportComponent|
+              }}
+                {{#if ReportComponent}}
+                  <div class={{concatClass "rewind-report" report.identifier}}>
+                    <ReportComponent @report={{report}} />
+                  </div>
                 {{/if}}
-              </div>
+              {{/let}}
             {{/each}}
           </div>
 
